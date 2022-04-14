@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from 'react-modal'
-import { Container, Content } from "./style";
+import { Container, SDivider, Theader } from "./style";
 
 // interface NewTransacationModalProps {
 //     isOpen: boolean;
@@ -21,8 +21,112 @@ const  Relatorio = () =>{
 
 
  return(
+     <>
+     <Theader>
+         <h1>Relatório de servidores</h1>
+     </Theader>
+     
     <Container>
-         <button type="button" 
+        <table>
+            <thead>
+                <tr>
+                <th>Servidores</th>
+                <th>IP</th>
+                <th>Sistema Operacional</th>
+                <th>Versão</th>
+                <th>Virtualização</th>
+                </tr>
+            </thead>
+            <tbody>
+            <SDivider></SDivider>
+                <tr>
+                    <td>d71560214.hml.bradseg.com.br</td>
+                    <td>157.589.547.20</td>
+                    <td>Linux</td>
+                    <td>RedHat 8.0</td>
+                    <td>Vmware/guest</td>
+                </tr>
+                <SDivider></SDivider>
+                <tr>
+                    <td>d71560214.hml.bradseg.com.br</td>
+                    <td>157.589.547.20</td>
+                    <td>Linux</td>
+                    <td>Redhat 8.0</td>
+                    <td>Vmware/guest</td>
+                </tr>
+                <SDivider></SDivider>
+                <tr>
+                    <td>d71560214.hml.bradseg.com.br</td>
+                    <td>157.589.547.20</td>
+                    <td>Linux</td>
+                    <td>RedHat 8.0</td>
+                    <td>Vmware/guest</td>
+                </tr>
+                <SDivider></SDivider>
+                <tr>
+                    <td>d71560214.hml.bradseg.com.br</td>
+                    <td>157.589.547.20</td>
+                    <td>Linux</td>
+                    <td>RedHat 8.0</td>
+                    <td>Vmware/guest</td>
+                </tr>
+                <SDivider></SDivider>
+                <tr>
+                    <td>d71560214.hml.bradseg.com.br</td>
+                    <td>157.589.547.20</td>
+                    <td>Linux</td>
+                    <td>RedHat 8.0</td>
+                    <td>Vmware/guest</td>
+                </tr>
+                <SDivider></SDivider>
+                <tr>
+                    <td>d71560214.hml.bradseg.com.br</td>
+                    <td>157.589.547.20</td>
+                    <td>Linux</td>
+                    <td>RedHat 8.0</td>
+                    <td>Vmware/guest</td>
+                </tr>
+                <SDivider></SDivider>
+                <tr>
+                    <td>d71560214.hml.bradseg.com.br</td>
+                    <td>157.589.547.20</td>
+                    <td>Linux</td>
+                    <td>RedHat 8.0</td>
+                    <td>Vmware/guest</td>
+                </tr>
+                <SDivider></SDivider>
+                <tr>
+                    <td>d71560214.hml.bradseg.com.br</td>
+                    <td>157.589.547.20</td>
+                    <td>Linux</td>
+                    <td>RedHat 8.0</td>
+                    <td>Vmware/guest</td>
+                </tr>
+                <SDivider></SDivider>
+                <tr>
+                    <td>d71560214.hml.bradseg.com.br</td>
+                    <td>157.589.547.20</td>
+                    <td>Linux</td>
+                    <td>RedHat 8.0</td>
+                    <td>Vmware/guest</td>
+                </tr>
+            </tbody>
+        </table>
+    </Container>
+  
+    </>
+ )
+
+}
+
+
+export default Relatorio;
+
+
+
+
+
+ {/* <button type="button" 
             onClick={handleOpenNewTransactionModal}
             className="react-modal-close"
             >
@@ -59,12 +163,4 @@ const  Relatorio = () =>{
                 Fazer upload
             </button>
         </Content>
-    </Modal>
-</Container>
-
- )
-
-}
-
-
-export default Relatorio;
+    </Modal> */}

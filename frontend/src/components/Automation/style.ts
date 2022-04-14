@@ -1,12 +1,16 @@
 import styled from "styled-components";
 
 export const Container = styled.form`
-  width: 1000px;
-  height: 1000px;
+  width: 400px;
+  height: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 300px;
+  margin-left: 650px;
+  margin-top: 300px ;
+  box-shadow: 10px 10px 22px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 10px 10px 22px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 22px 0px rgba(0,0,0,0.75);
 
 
 
@@ -46,4 +50,18 @@ export const Container = styled.form`
         }
  }
   
+`
+
+
+export const Aheader = styled.header`
+  margin-left: 760px;
+  margin-top: 50px;
+
+  h1{
+        font-weight: 500;
+        font-size: x-large ;
+        font-style: italic;
+        text-shadow: 4px 5px 10px rgba(0,0,0,0.51);
+   }
+
 `

@@ -4,7 +4,7 @@ import {
 	Link,
 } from 'react-router-dom'
 
-import { UserType } from './Users'
+import { UserType } from '../ListUser'
 
 const SingleUser = () => {
 	const params = useParams()

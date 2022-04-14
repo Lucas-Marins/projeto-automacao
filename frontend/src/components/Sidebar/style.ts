@@ -4,8 +4,10 @@ import { ToastContainer, toast } from 'react-toastify';
 
 export const Container = styled.div<RadioBoxProps>`
     width: ${({ isOpen }) => (!isOpen ? `auto` : `250px`)};
-    background-color: #E52E4D;
-    color: #EBF8FE;
+    background: #dfc4c4;
+background: linear-gradient(123deg,#dfc4c4 0%, #ec2f2f 40%, #da1e1e 80%);
+background: -webkit-linear-gradient(123deg,#dfc4c4 0%, #ec2f2f 40%, #da1e1e 80%);
+background: -moz-linear-gradient(123deg,#dfc4c4 0%, #ec2f2f 40%, #da1e1e 80%);
     padding-top:200px;
     padding-left:20px;
     height:100vh;
@@ -31,18 +33,14 @@ interface RadioBoxProps{
 }
 
 export const SSidebarButton=styled.button<RadioBoxProps>`
-  font-family: inherit;
   outline: none;
   border: none;
-  background: #969CB3;
-  letter-spacing: inherit;
+  background: RGBA(133,0,0,0.5);
   color: black;
-  font-size: inherit;
-  text-align: inherit;
   padding: 0;
   position: absolute;
   top: 48px;
-  right: ${({ isOpen }) => (isOpen ? `-16px` : `-40px`)};
+  right: ${({ isOpen }) => (isOpen ? `-16px` : `-30px`)};
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -96,9 +94,10 @@ export const SSearchIcon = styled.button`
 
 
 export const SDivider = styled.div`
-    height: 1px;
-    width: 100%;
+    height: 0.5px;
+    width: 80%;
     margin: 24px 0;
+    margin-left: 15px ;
     background-color: #FFF;
 `;
 
@@ -119,7 +118,7 @@ export const SLink = styled(Link)`
         color: #E52E4D;
         height: 45px;
         border-radius: 5px;
-        margin-right: 5px;
+        /* margin-right: 0.5px; */
     }
 `;
 
@@ -151,4 +150,27 @@ export const SLogo = styled.div`
         justify-content: center;
     }
     cursor: pointer;
+`
+
+export const SsideButton = styled.div`
+    display: flex;
+    align-items: center;
+    padding: 0 1.2rem;
+    margin-left: 17px;
+    font-size: 15px;
+    text-decoration: none;
+    color: #ffffff;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #ffffff;
+        color: #E52E4D;
+        height: 45px;
+        border-radius: 5px;
+        margin-right: 1px;
+    }
+    svg {
+        font-size: 20px;
+    }
+
 `

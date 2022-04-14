@@ -1,7 +1,7 @@
 import React from "react"
 import {Link, useLocation} from "react-router-dom"
 
-import {UserType} from "./Users"
+import { UserType } from "../ListUser"
 
 const NewUser = () => {
 	const [newUserData, setNewUserData] = React.useState<UserType>({
@@ -49,7 +49,8 @@ const NewUser = () => {
 	return (
 		<div className="new-user">
 			<h1>
-				Add a new user from:{locatioState.from} by {locatioState.userName}
+				Adicione um novo usuário{/*{locatioState.from} {locatioState.userName}*/}
+				
 			</h1>
 			<Link to="/users">Go back</Link>
 

@@ -2,7 +2,7 @@ import React, { FormEvent, useRef, useState } from 'react';
 import { api } from '../../services/api';
 
 import { useNavigate } from 'react-router-dom';
-import { Container } from './style';
+import { Aheader, Container } from './style';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -40,6 +40,9 @@ const  Automation=() =>{
 
   return (
       <div>
+      <Aheader>
+        <h1>Automação</h1>
+      </Aheader>
       <ToastContainer 
         autoClose={1000}
        />

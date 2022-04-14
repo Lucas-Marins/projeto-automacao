@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar'
 
 
 import './styles.css'
+import { GlobalStyle } from './styles/global';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
 
      {/** Inner container */}
     <MainRoutes/>
+     
     </div>
   );
 }

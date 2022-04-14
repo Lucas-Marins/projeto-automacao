@@ -2,13 +2,13 @@ import React from "react"
 import {Routes, Route, Navigate} from "react-router-dom"
 
 import InnerContent from "./components/InnerContent"
-import Dashboard from "./components/Dashboard"
+import Dashboard from "./Pages/Dashboard"
 import Tabs from "./components/Tabs"
-import Settings from "./components/Settings"
-import Login from "./components/Login"
-import Users from "./components/Users"
-import SingleUser from "./components/SingleUser"
-import NewUser from "./components/NewUser"
+import Settings from "./Pages/Settings"
+import Login from "./Pages/Login"
+import ListUser from "./Pages/ListUser"
+import SingleUser from "./Pages/SingleUser"
+import NewUser from "./Pages/NewUser"
 import DynamicForm from "./components/DynamicForm"
 import Automation from "./components/Automation"
 import  Relatorio  from "./Pages/Relatorio"
@@ -47,7 +47,7 @@ const MainRoutes = () => (
 				<Route path="dynamic-form" element={<DynamicForm />} />
 				<Route
 					path="users"
-					element={<Users extraItem="test extra item from router" />}
+					element={<ListUser extraItem="test extra item from router" />}
 				/>
 				<Route path="users/:userId" element={<SingleUser />} />
 				<Route path="users/new" element={<NewUser />} />

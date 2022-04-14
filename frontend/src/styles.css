@@ -15,18 +15,19 @@ menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
 	padding: 0;
-	border: 0;
+	/* border: 0; */
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;
+	/* vertical-align: baseline; */
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+/* article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
 	line-height: 1;
+
 }
 ol, ul {
 	list-style: none;
@@ -38,11 +39,11 @@ blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
 	content: none;
-}
-table {
+} */
+/* table {
 	border-collapse: collapse;
 	border-spacing: 0;
-}
+} */
 
 
 body{
@@ -54,6 +55,56 @@ body{
     display: flex;
 }
 
+html {
+    @media(max-width: 1080px){
+        font-size: 93.75% //15px
+    }
+
+    @media(max-width: 720px){
+        font-size: 87.5% //14px
+    }
+}
+
+
+.react-modal-overlay{
+    background: rgba(0,0,0,0.5);
+
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.react-modal-content{
+    width: 100%;
+    max-width: 576px;
+    background: white;
+    padding: 3rem;
+    position: relative;
+    border-radius: 0.25rem;
+}
+
+.react-modal-close{
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    border: 0;
+    background: transparent;
+}
+
+
+
+
+
+
+
+/* 
 .sidebar_active{
     text-decoration: underline!important;
 }
@@ -174,37 +225,5 @@ h2{
 .btn-primary{
     background-color:#365262;
     color:white;
-}
+} */
 
-
-.react-modal-overlay{
-    background: rgba(0,0,0,0.5);
-
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-}
-
-.react-modal-content{
-    width: 100%;
-    max-width: 576px;
-    background: white;
-    padding: 3rem;
-    position: relative;
-    border-radius: 0.25rem;
-}
-
-.react-modal-close{
-    position: absolute;
-    right: 1.5rem;
-    top: 1.5rem;
-    border: 0;
-    background: transparent;
-}

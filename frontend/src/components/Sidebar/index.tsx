@@ -4,11 +4,13 @@ import {Link, useLocation, useNavigate} from "react-router-dom"
 
 import {navigationItems} from "../../config"
 
-import { Container, Content, SDivider, SLink, SLinkContainer, SLinkIcon, SLinkLabel, SLogo, SSearch, SSearchIcon, SSidebarButton } from "./style"
+import { Container, Content, SDivider, SLink, SLinkContainer, SLinkIcon, SLinkLabel, SLogo, SSearch, SSearchIcon, SSidebarButton, SsideButton } from "./style"
 
 import {
     AiOutlineLeft, AiOutlineSearch,
 } from "react-icons/ai";
+
+import {FiLogOut} from 'react-icons/fi'
 
 import logoSVG from '../../assets/bradesco.svg'
 
@@ -45,7 +47,7 @@ const Sidebar  = () => {
 			{/* <SLogo>
                 <img src={logoSVG} alt="logo" />
             </SLogo> */}
-			<SSearch
+			{/* <SSearch
                 style={!sidebarOpen ? { width: `fit-content` } : {}}
             >
                 <SSearchIcon>
@@ -57,13 +59,13 @@ const Sidebar  = () => {
                     style={!sidebarOpen ? { width: 0, padding: 0 } : {}}
                 />
             </SSearch>
-	
+	 */}
+	 	<SLinkContainer >
 			{user && (
 			<>
 			<SDivider />
-				{navigationItems.sidebar.map(({icon,name,text,to}) => (
-					<SLinkContainer key={name} >
-						<SLink to={to} style={!sidebarOpen ? { width: `fit-content` } : {}}>
+				{navigationItems.sidebar.map(({icon,name,to}) => (			
+						<SLink key={name} to={to} style={!sidebarOpen ? { width: `fit-content` } : {}}>
 							<SLinkIcon>{icon}</SLinkIcon>
 							{sidebarOpen && (
 								<>
@@ -71,7 +73,6 @@ const Sidebar  = () => {
 								</>
 							)}
 						</SLink>
-					</SLinkContainer>
 				))}	
 			<SDivider />
 			</>
@@ -79,14 +80,23 @@ const Sidebar  = () => {
 		  {!user && (
 			<Link
 				to="/login"
-				className={location.pathname === "/login" ? "sidebar_active" : ""}>
-				Login
+				// className={location.pathname === "/login" ? "sidebar_active" : ""}
+				>
+				{/* Login */}
 			</Link>
 			)}
 			 {location.pathname !== "/login" && (
-					<button onClick={logout}>logout</button>
+				<SsideButton onClick={logout} style={!sidebarOpen ? { width: `fit-content` } : {}} >
+					<FiLogOut  />
+					{sidebarOpen && (
+						<>
+						<SLinkLabel>Logout</SLinkLabel>
+						</>
+					)}
+				</SsideButton>
 			 )}
-			</Content>
+	      </SLinkContainer>
+		 </Content>
 		</Container>
 	)
 }

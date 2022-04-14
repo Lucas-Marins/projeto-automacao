@@ -39,12 +39,12 @@ export const navigationItems = {
     //   to: '/dynamic-form', 
     //   text:'dynamicform'
     // },
-    {
-      name: 'Settings ',
-      to: '/settings', 
-      text:'Settings',
-      icon: < FaBs.BsGearFill />
-    },
+    // {
+    //   name: 'Settings ',
+    //   to: '/settings', 
+    //   text:'Settings',
+    //   icon: < FaBs.BsGearFill />
+    // },
   
 
   ], 

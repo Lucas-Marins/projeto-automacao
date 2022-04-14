@@ -1,4 +1,5 @@
 import {useNavigate} from "react-router-dom"
+import { Container, LoginButton } from "./style"
 
 const Login = () => {
 	const navigate = useNavigate()
@@ -12,11 +13,11 @@ const Login = () => {
 	}
 
 	return (
-		<div className="login">
+		<Container>
 			<h2>Bem-Vindo a página de Login </h2>
 			<p>Por favor, clique em login para continuar</p>
-			<button onClick={login}> Login</button>
-		</div>
+			<LoginButton onClick={login}> Login</LoginButton>
+		</Container>
 	)
 }
 
