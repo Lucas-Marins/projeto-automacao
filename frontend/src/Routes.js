@@ -1,7 +1,7 @@
 import React from "react"
 import {Routes, Route, Navigate} from "react-router-dom"
 
-import InnerContent from "./components/InnerContent"
+
 import Dashboard from "./Pages/Dashboard"
 import Tabs from "./components/Tabs"
 import Settings from "./Pages/Settings"
@@ -13,6 +13,7 @@ import DynamicForm from "./components/DynamicForm"
 import Automation from "./components/Automation"
 import  Relatorio  from "./Pages/Relatorio"
 import DeployPage from "./Pages/DeployPage"
+import DetailsHost from "./Pages/DetailsHost"
 
 import Tab1 from "./components/Tab1"
 import Tab2 from "./components/Tab2"
@@ -29,22 +30,14 @@ const MainRoutes = () => (
 		{/** Protected Routes */}
 		{/** Wrap all Route under ProtectedRoutes element */}
 		<Route path="/" element={<ProtectedRoutes />}>
-			<Route path="/" element={<InnerContent />}>
-				<Route path="/" element={<Navigate replace to="dashboard" />} />
+		
+				<Route path="/" element={<Login />} />
 				<Route path="dashboard" element={<Dashboard />} />
 				<Route path="automation" element={<Automation />} />
-				<Route path="/relatorios" element={<Relatorio/>} />
-				<Route path="deploy" element={<DeployPage/>} />
-				<Route path="tabs" element={<Tabs props={{userName: "Bikash web"}} />}>
-					<Route path="/tabs" element={<Navigate replace to="tab1" />} />
-					<Route path="tab1" element={<Tab1 />} />
-					<Route path="tab2" element={<ProtectedRoutes roleRequired="USER" />}>
-						<Route path="/tabs/tab2" element={<Tab2 />} />
-					</Route>
-					<Route path="tab3" element={<Tab3 />} />
-				</Route>
+				<Route path="deploy/:id" element={<DeployPage/>} />
+				<Route path="relatorios" element={<Relatorio/>} />
+				<Route path="relatorios/details/:id" element={<DetailsHost/>} />
 				<Route path="settings" element={<Settings />} />
-				<Route path="dynamic-form" element={<DynamicForm />} />
 				<Route
 					path="users"
 					element={<ListUser extraItem="test extra item from router" />}
@@ -52,7 +45,6 @@ const MainRoutes = () => (
 				<Route path="users/:userId" element={<SingleUser />} />
 				<Route path="users/new" element={<NewUser />} />
 		
-			</Route>
 		</Route>
 
 		{/** Public Routes */}
@@ -67,3 +59,14 @@ const MainRoutes = () => (
 )
 
 export default MainRoutes
+
+
+{/* <Route path="tabs" element={<Tabs props={{userName: "Bikash web"}} />}>
+<Route path="/tabs" element={<Navigate replace to="tab1" />} />
+<Route path="tab1" element={<Tab1 />} />
+<Route path="tab2" element={<ProtectedRoutes roleRequired="USER" />}>
+	<Route path="/tabs/tab2" element={<Tab2 />} />
+</Route>
+<Route path="tab3" element={<Tab3 />} />
+</Route> */}
+{/* <Route path="dynamic-form" element={<DynamicForm />} /> */}

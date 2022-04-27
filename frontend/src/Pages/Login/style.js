@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 export const Container = styled.div`
-   width: 350px;
+   /* width: 350px;
    padding-left: 50px;
    margin-top: 250px;
    margin-left: 700px;
@@ -16,6 +16,17 @@ export const Container = styled.div`
 
    p{
        margin-top: 10px;
+   } */
+   width: 100vw;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   .form{
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+     padding: 3rem;
    }
 `
 

@@ -5,11 +5,11 @@ import { ToastContainer, toast } from 'react-toastify';
 export const Container = styled.div<RadioBoxProps>`
     width: ${({ isOpen }) => (!isOpen ? `auto` : `250px`)};
     background: #dfc4c4;
-background: linear-gradient(123deg,#dfc4c4 0%, #ec2f2f 40%, #da1e1e 80%);
-background: -webkit-linear-gradient(123deg,#dfc4c4 0%, #ec2f2f 40%, #da1e1e 80%);
-background: -moz-linear-gradient(123deg,#dfc4c4 0%, #ec2f2f 40%, #da1e1e 80%);
+    background: linear-gradient(123deg,#dfc4c4 0%, #ec2f2f 40%, #da1e1e 80%);
+    background: -webkit-linear-gradient(123deg,#dfc4c4 0%, #ec2f2f 40%, #da1e1e 80%);
+    background: -moz-linear-gradient(123deg,#dfc4c4 0%, #ec2f2f 40%, #da1e1e 80%);
     padding-top:200px;
-    padding-left:20px;
+    /* padding-left:20px; */
     height:100vh;
 
     position: relative;

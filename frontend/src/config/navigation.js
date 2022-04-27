@@ -1,14 +1,15 @@
 import React from 'react'
 import * as FaIcons from 'react-icons/fa' 
 import * as FaBs from 'react-icons/bs'
+import * as FaRi from 'react-icons/ri'
 
 export const navigationItems = {
   sidebar: [
     {
-      name: 'Home ',
+      name: 'Dashboard ',
       to: '/dashboard', 
-      text: 'Home',
-      icon: < FaIcons.FaHome />
+      text: 'Dashboard',
+      icon: < FaRi.RiDashboardFill />
       
     },
     {

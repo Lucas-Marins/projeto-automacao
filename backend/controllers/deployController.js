@@ -1,12 +1,18 @@
 const axios = require('axios')
 const config = require('../settings/conexao')
-
+const upload = require("../settings/configMulter")
 
 
 const deployCrtl = { 
-     deployTemplate: async (req,res) => {
+     deployJob: async (req,res) => {
+         const id = req.params.id
+         const {csv_name} = req.body
 
-        const triggerhost = await axios.post('http://192.168.1.10/api/v2/job_templates/7/launch/',{}, config.axiosOptionsPost)
+        const triggerhost = await axios.post(`http://192.168.1.10/api/v2/job_templates/${id}/launch/`,{
+            extra_vars:{
+                csv_Lista: csv_name
+            }
+        }, config.axiosOptionsPost)
         return res.status(201).json(triggerhost.data)
     
         // const triggerhost = await axios.post('http://192.168.1.10/api/v2/job_templates/7/launch/',{
@@ -18,8 +24,21 @@ const deployCrtl = {
         //   }, config.axiosOptionsPost)
         // return res.status(201).json(triggerhost.data)
         
-    }
-    
+        
+    },
+
+    deployWorkflow: async (req,res) => {
+        const id = req.params.id
+        const {csv_name} = req.body
+
+        const triggerhost = await axios.post(`http://192.168.1.10/api/v2/workflow_job_templates/${id}/launch/`,{
+            extra_vars:{
+                csv_Lista: csv_name
+            }
+        }, config.axiosOptionsPost)
+        return res.status(201).json(triggerhost.data)
+    }    
+   
 }
 
 

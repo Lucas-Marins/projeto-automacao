@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(3, 1fr) ;
     margin-left: 400px;
     margin-top: 50px ;
@@ -62,5 +62,13 @@ export const Container = styled.div`
         }
 
         
-    }
+    } */
+
+   width: 90vw;
+   height: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+
 `

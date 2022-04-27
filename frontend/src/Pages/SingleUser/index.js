@@ -9,22 +9,26 @@ import { UserType } from '../ListUser'
 const SingleUser = () => {
 	const params = useParams()
 
-	const [user, setUser] =
-		React.useState<UserType>()
+	// const [user, setUser] =
+	// 	React.useState<UserType>()
 
-	React.useEffect(() => {
-		const singleUserApiUrl = `https://jsonplaceholder.typicode.com/users/${params.userId}`
-		//fetch users from json placeholder
-		fetch(singleUserApiUrl)
-			.then((response) =>
-				response.json(),
-			)
-			.then((json) => setUser(json))
-	}, [params])
+	// React.useEffect(() => {
+	// 	const singleUserApiUrl = `https://jsonplaceholder.typicode.com/users/${params.userId}`
+	// 	//fetch users from json placeholder
+	// 	fetch(singleUserApiUrl)
+	// 		.then((response) =>
+	// 			response.json(),
+	// 		)
+	// 		.then((json) => setUser(json))
+	// }, [params])
 
 	return (
-		<>
-			<Link to='/users'>Go back</Link>
+		<h1>Hello from single USer</h1>
+	)
+}
+
+export default SingleUser
+{/* <Link to='/users'>Go back</Link>
 			{user && (
 				<div
 					className='users__card'
@@ -55,9 +59,4 @@ const SingleUser = () => {
 						</span>
 					</p>
 				</div>
-			)}
-		</>
-	)
-}
-
-export default SingleUser
+			)} */}

@@ -19,8 +19,8 @@ const storage = multer.diskStorage({
     filename:(req,file,callback) =>{
         const time = new Date().getTime();
 
-       //  callback(null, `${time}_${file.originalname}`)
-       callback(null, 'sample.csv')
+       callback(null, `${time}_${file.originalname}`)
+       //callback(null, 'sample.csv')
     }
 })
 

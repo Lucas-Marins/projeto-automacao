@@ -4,7 +4,9 @@ const deployCrtl = require('../controllers/deployController')
 
 
 
-router.post('/deploy', deployCrtl.deployTemplate)
+router.post('/job/:id', deployCrtl.deployJob)
+router.post('/workflow/:id', deployCrtl.deployWorkflow)
+
 
 
 module.exports = router

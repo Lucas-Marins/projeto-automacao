@@ -3,16 +3,16 @@ import { BsPlusSquare } from "react-icons/bs"
 import {Link} from "react-router-dom"
 import { Container, SDivider, Theader, Userlink } from "./style"
 
-export type UserType = {
-	id: number
-	name: string
-	email: string
-	phone: string
-	website: string
-}
-type UsersType = Array<UserType>
+// export type UserType = {
+// 	id: number
+// 	name: string
+// 	email: string
+// 	phone: string
+// 	website: string
+// }
+// type UsersType = Array<UserType>
 
-const ListUser = (props: any) => {
+const ListUser = () => {
 	// const [users, setUsers] = React.useState<UsersType>([])
 
 	// React.useEffect(() => {

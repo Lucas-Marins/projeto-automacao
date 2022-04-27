@@ -1,59 +1,66 @@
 import React from "react"
 import {Link, useLocation} from "react-router-dom"
 
-import { UserType } from "../ListUser"
+// import { UserType } from "../ListUser"
 
 const NewUser = () => {
-	const [newUserData, setNewUserData] = React.useState<UserType>({
-		id: 0,
-		name: "",
-		phone: "",
-		email: "",
-		website: "",
-	})
+	// const [newUserData, setNewUserData] = React.useState<UserType>({
+	// 	id: 0,
+	// 	name: "",
+	// 	phone: "",
+	// 	email: "",
+	// 	website: "",
+	// })
 
-	const location = useLocation()
+	// const location = useLocation()
 
-	//location state
-	const [locatioState, setLocationState] = React.useState({
-		from: "",
-		userName: "",
-	})
+	// //location state
+	// const [locatioState, setLocationState] = React.useState({
+	// 	from: "",
+	// 	userName: "",
+	// })
 
-	React.useEffect(() => {
-		console.log("location from new user", location)
-		if (location.state) {
-			let _state = location.state as any
-			setLocationState(_state)
-		}
-	}, [location])
+	// React.useEffect(() => {
+	// 	console.log("location from new user", location)
+	// 	if (location.state) {
+	// 		let _state = location.state 
+	// 		setLocationState(_state)
+	// 	}
+	// }, [location])
 
-	const handleChange = (e: any) => {
-		const _newUserData = {
-			...newUserData,
-		} as any
+	// const handleChange = (e) => {
+	// 	const _newUserData = {
+	// 		...newUserData,
+	// 	} 
 
-		_newUserData[e.target.name] = e.target.value
+	// 	_newUserData[e.target.name] = e.target.value
 
-		setNewUserData(_newUserData)
-	}
+	// 	setNewUserData(_newUserData)
+	// }
 
-	const handlePostData = () => {
-		console.log("new user data", newUserData)
+	// const handlePostData = () => {
+	// 	console.log("new user data", newUserData)
 
-		//post request for API
+	// 	//post request for API
 
-		alert("Data posted successfully")
-	}
+	// 	alert("Data posted successfully")
+	// }
 
 	return (
 		<div className="new-user">
-			<h1>
-				Adicione um novo usuário{/*{locatioState.from} {locatioState.userName}*/}
-				
-			</h1>
-			<Link to="/users">Go back</Link>
+			<h1>Hello form new user</h1>
+		</div>
+	)
+}
 
+export default NewUser
+
+{/* <h1> */}
+				{/* Adicione um novo usuário{locatioState.from} {locatioState.userName} */}
+				
+			{/* </h1>
+			<Link to="/users">Go back</Link> */}
+{/* 
 			<div className="new-user__form">
 				<div className="new-user__form-group">
 					<label htmlFor="">Name</label>
@@ -97,10 +104,5 @@ const NewUser = () => {
 				</div>
 				<div className="new-user__form-group">
 					<button onClick={handlePostData}>Save user data</button>
-				</div>
-			</div>
-		</div>
-	)
-}
-
-export default NewUser
+				</div> */}
+			{/* </div> */}

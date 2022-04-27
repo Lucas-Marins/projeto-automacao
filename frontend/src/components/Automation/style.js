@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.form`
-  width: 400px;
+  /* width: 400px;
   height: 250px;
   display: flex;
   align-items: center;
@@ -48,7 +49,44 @@ export const Container = styled.form`
         &:hover{
             filter: brightness(0.9);
         }
- }
+ } */
+
+
+
+ .site-card-wrapper {
+  width: 80vw;
+  
+  margin-left: 80px;
+  margin-top: 50px;
+
+  padding: 20px;
+
+  /* border: 3px outset #d63f3f;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); */
+
+  
+}
+
+
+h1 {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 20px;
+  margin-top: 4px;
+  }
+
+.h-template{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ant-card.criclebox {
+    box-shadow: 0px 20px 27px #0000000d;
+    border-radius: 12px;
+  }
   
 `
 
@@ -64,4 +102,19 @@ export const Aheader = styled.header`
         text-shadow: 4px 5px 10px rgba(0,0,0,0.51);
    }
 
+`
+
+
+export const SLink = styled(Link)`
+   color: rgba(0,0,0,0.51);
+   text-decoration: none;
+   display: flex;
+   justify-content: center;
+
+   transition: filter 0.3s;
+
+   &:hover{
+     color: red;
+     filter: brightness(0.9);
+   }
 `

@@ -5,19 +5,16 @@ import Sidebar from './components/Sidebar'
 
 
 import './styles.css'
-import { GlobalStyle } from './styles/global';
+import {DataProvider} from './GlobalState'
 
 function App() {
   return (
-    <div className="app">
-     
-     {/** Sidebar */}
-     <Sidebar/>
-
-     {/** Inner container */}
-    <MainRoutes/>
-     
-    </div>
+    <DataProvider>
+      <div className="app">
+      <Sidebar/>
+      <MainRoutes/>
+      </div>
+    </DataProvider>
   );
 }
 

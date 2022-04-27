@@ -44,22 +44,6 @@ const Sidebar  = () => {
 						<AiOutlineLeft />
 				</SSidebarButton>
 			</>
-			{/* <SLogo>
-                <img src={logoSVG} alt="logo" />
-            </SLogo> */}
-			{/* <SSearch
-                style={!sidebarOpen ? { width: `fit-content` } : {}}
-            >
-                <SSearchIcon>
-                    <AiOutlineSearch />
-                </SSearchIcon>
-                <input
-                    ref={searchRef}
-                    placeholder="Search"
-                    style={!sidebarOpen ? { width: 0, padding: 0 } : {}}
-                />
-            </SSearch>
-	 */}
 	 	<SLinkContainer >
 			{user && (
 			<>
