@@ -23,6 +23,7 @@
     "multer-sftp": "^1.1.1",
     "queue": "^6.0.2",
     "scp2": "^0.5.0",
+    "socket.io": "^4.5.0",
     "ssh2": "^1.9.0",
     "ssh2-sftp-client": "^8.0.0"
   },

@@ -37,7 +37,13 @@ const deployCrtl = {
             }
         }, config.axiosOptionsPost)
         return res.status(201).json(triggerhost.data)
-    }    
+    },
+    
+    GetJobLastId: async(req,res) => {
+
+        const jobs = await axios.get('http://192.168.1.10/api/v2/jobs/',config.axiosOptionsGet)
+        return res.status(200).json(jobs.data)
+    }
    
 }
 

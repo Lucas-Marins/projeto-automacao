@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext,useReducer } from "react";
 import { Container } from './style';
 
 import 'antd/dist/antd.css'
@@ -20,6 +20,28 @@ const DeployPage = () => {
     const [templates] = state.templatesAPI.templates
     const [data,setData] = useState([])
 
+    const [lastlogid, setLastLogId] =  useState(null);
+
+    console.log(lastlogid)
+
+    const [reduce, forceUpdate] = useReducer( x => x + 1 ,0)
+
+    useEffect(() => { 
+        let isCancelled = false
+        const getLasID= async () => {
+          const res = await api.get('/log')
+     
+          
+        setLastLogId(res.data)        
+        }
+     
+        getLasID()
+        
+        return () => {
+            isCancelled = true;
+          };
+     },[reduce]) 
+
     useEffect(() => {
         if(params){
             templates.forEach(template =>{
@@ -27,7 +49,6 @@ const DeployPage = () => {
             })
         }
     },[params,templates])
-
 
     const [fileData, setFileData] = useState([]);
     const [name, setFileName] = useState("")
@@ -72,6 +93,12 @@ const DeployPage = () => {
                  })
              }
          }
+
+        forceUpdate()
+
+        setTimeout(() => {
+            navigate(`/logs/${lastlogid + 1}`)
+          }, "2000")
   }
 
     return(
@@ -124,7 +151,8 @@ const DeployPage = () => {
                 type="primary" 
                 htmlType="submit"
                 onClick={handleCreateNewTransaction}
-                disabled={!name}
+                // disabled={!name}
+                disabled={lastlogid == null || !name}
                   >Enviar</Button>
                 </Form.Item>
             </Form>   

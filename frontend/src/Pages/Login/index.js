@@ -1,8 +1,11 @@
 import {useNavigate} from "react-router-dom"
 import { Container, LoginButton } from "./style"
+import io from 'socket.io-client'
+
 
 import 'antd/dist/antd.css'
 import {Button, Form, Input} from 'antd'
+import { useEffect } from "react"
 
 const Login = () => {
 	const navigate = useNavigate()
@@ -14,6 +17,24 @@ const Login = () => {
 		localStorage.setItem("user", JSON.stringify({role: "ADMIN"}))
 		navigate("/dashboard")
 	}
+
+
+	// useEffect(() => {
+	// 	const socket = io('ws://localhost:3333')
+	
+	// 	socket.on('connnection', () => {
+	// 	  console.log('connected to server');
+	// 	})
+	
+	// 	socket.on('message', (message) => {
+	// 	  console.log(message);
+	// 	})
+	
+	// 	socket.on('disconnect', () => {
+	// 	  console.log('Socket disconnecting');
+	// 	})
+	
+	//   }, [])
 
 	return (
 	

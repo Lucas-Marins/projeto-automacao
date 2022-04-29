@@ -4,6 +4,7 @@ const config = require('../settings/conexao')
 const Host = require('../models/host')
 
 const hostCrtl = {
+  
     
    getHost: async (req,res) => {
 

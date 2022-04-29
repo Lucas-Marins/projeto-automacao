@@ -14,6 +14,11 @@ import {FiLogOut} from 'react-icons/fi'
 
 import logoSVG from '../../assets/bradesco.svg'
 
+
+import 'antd/dist/antd.css'
+import {Upload, Button, message, Input, Form, Card} from 'antd'
+import {UploadOutlined,InboxOutlined} from '@ant-design/icons'
+
 const Sidebar  = () => {
 	const searchRef = useRef(null);
     const [sidebarOpen, setSidebarOpen] = useState(false);

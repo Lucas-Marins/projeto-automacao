@@ -38,15 +38,14 @@ blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
 	content: none;
-} */
-/* table {
+} 
+ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 } */
 
 
 body{
-    font-family: open sans, Helvetica, Arial, sans-serif;
     background: #ecebeb;
     background: linear-gradient(0deg,#ecebeb 0%, #ffffff 80%);
     background: -webkit-linear-gradient(0deg,#ecebeb 0%, #ffffff 80%);
@@ -56,6 +55,7 @@ body{
 
 .app{
     display: flex;
+    
 }
 
 /* html {

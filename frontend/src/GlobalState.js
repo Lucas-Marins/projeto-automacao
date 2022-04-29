@@ -3,7 +3,6 @@ import { api } from './services/api'
 
 import HostsAPI from './api/hostAPI'
 import TemplateAPI from './api/templateAPI'
-
 export const GlobalState = createContext()
 
 
@@ -34,7 +33,7 @@ export const DataProvider = ({children}) => {
 
   const state= {
     hostsAPI:  HostsAPI(),
-    templatesAPI: TemplateAPI(),
+    templatesAPI: TemplateAPI()
   }
   return(
     <GlobalState.Provider value={state}>

@@ -14,6 +14,7 @@ import Automation from "./components/Automation"
 import  Relatorio  from "./Pages/Relatorio"
 import DeployPage from "./Pages/DeployPage"
 import DetailsHost from "./Pages/DetailsHost"
+import Log from "./Pages/Log"
 
 import Tab1 from "./components/Tab1"
 import Tab2 from "./components/Tab2"
@@ -36,6 +37,7 @@ const MainRoutes = () => (
 				<Route path="automation" element={<Automation />} />
 				<Route path="deploy/:id" element={<DeployPage/>} />
 				<Route path="relatorios" element={<Relatorio/>} />
+				<Route path="logs/:id" element={<Log/>} />
 				<Route path="relatorios/details/:id" element={<DetailsHost/>} />
 				<Route path="settings" element={<Settings />} />
 				<Route

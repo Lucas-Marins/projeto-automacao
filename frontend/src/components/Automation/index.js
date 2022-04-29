@@ -12,6 +12,8 @@ import 'antd/dist/antd.css'
 import {Card, Col, Row, Divider, Button,List,Input,Pagination} from 'antd'
 
 
+
+
 import { GlobalState } from '../../GlobalState';
 
 
@@ -36,7 +38,6 @@ const  Automation=() =>{
     for (let i = 0; i < 1; i++){
         array.push(currentPost)
     }
-
   
   return (
       <Container>
@@ -86,6 +87,7 @@ const  Automation=() =>{
             <List.Item  >
               <Card className="criclebox " title={val.name} hoverable={false}>
                 <SLink to={'/deploy/' + val.id}>
+                  
                       Selecionar
                 </SLink>
                 </Card>
