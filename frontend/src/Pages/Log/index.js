@@ -42,6 +42,7 @@ const Log = () => {
     const params = useParams()
     const [log, setLog] = useState([])
 
+
     const biggestNames = log
           .filter(item => item.event_display == "Playbook Complete")
           .map(log => log.event_display);
@@ -50,11 +51,9 @@ const Log = () => {
       return item
     })
 
-
-
     const getAPIData = useCallback(async () => {
       try {
-        const res = await  api.get(`log/${params.id}`)
+        const res = await  api.get(`log/job/${params.id}`)
         setLog(res.data)
       } catch (error) { 
         console.log(error)
@@ -65,29 +64,29 @@ const Log = () => {
     useEffect(() => {
 
       // if(params){
-      //      api.get(`log/${params.id}`)
-      //     .then(res => setLog(res.data.results))
-
+      //         api.get(`log/job/${params.id}`)
+      //         .then(res => setLog(res.data))
+    
       // }
 
       // const getAPIData = async () => {
       //   try {
-      //        const res = await  api.get(`log/${params.id}`)
-      //        setLog(res.data.results)
+      //        const res = await  api.get(`log/job/${params.id}`)
+      //        setLog(res.data)
       //   } catch (error) {
       //        console.log(error)
       //   }
       // }
-
+      if (results == 'Playbook Complete')  return null
       getAPIData()
 
-      const interval = setInterval(() => {
-        getAPIData()
-      }, 1000)
+      // const interval = setInterval(() => {
+      //   getAPIData()
+      // }, 1000)
 
-      return () => clearInterval(interval)
+      // return () => clearInterval(interval)
       
-    },[getAPIData])
+    },[log])
 
   
 
@@ -147,7 +146,7 @@ const Log = () => {
                 </Paragraph>
 
                 <Timeline
-                  pending={ results == 'Playbook Complete' ? 'Finalizado' : 'Espere Terminar....'}
+                  pending={ results == 'Playbook Complete' ? 'Finalizado' : 'Esperar Finalização....'}
                   pendingDot={results == 'Playbook Complete' ? <CheckOutlined /> : <LoadingOutlined />}
                   mode="alternate"
                 >

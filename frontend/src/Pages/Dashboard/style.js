@@ -3,10 +3,14 @@ import styled from "styled-components";
 export const Container = styled.div` 
 display: flex;
 justify-content: center;
+
 width: 100%;
-margin-top: 1rem;
+height: 100vh;
+overflow-x: hidden;
+
 
 .layout-content{
+    
     margin-top: 2rem;
     width: 80% !important;
     

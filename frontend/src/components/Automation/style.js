@@ -53,6 +53,10 @@ export const Container = styled.form`
 
 
 
+ height: 100vh;
+ overflow-x: hidden;
+
+
  .site-card-wrapper {
   width: 80vw;
   

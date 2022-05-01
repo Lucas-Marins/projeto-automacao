@@ -106,6 +106,7 @@ export const SLinkContainer = styled.div`
 `;
 
 export const SLink = styled(Link)`
+   
     display: flex;
     align-items: center;
     padding: 0 1rem;

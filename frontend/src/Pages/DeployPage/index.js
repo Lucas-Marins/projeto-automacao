@@ -24,18 +24,22 @@ const DeployPage = () => {
 
     console.log(lastlogid)
 
+
     const [reduce, forceUpdate] = useReducer( x => x + 1 ,0)
+
+    const getLastID= async () => {
+        const res = await api.get('/log/job')
+        setLastLogId(res.data)        
+      }
 
     useEffect(() => { 
         let isCancelled = false
-        const getLasID= async () => {
-          const res = await api.get('/log')
-     
-          
-        setLastLogId(res.data)        
-        }
-     
-        getLasID()
+        // const getLastID= async () => {
+        //   const res = await api.get('/log/job')
+        //    setLastLogId(res.data)        
+        // }
+    
+        getLastID()
         
         return () => {
             isCancelled = true;
@@ -48,7 +52,7 @@ const DeployPage = () => {
                 if(template.id == params.id) return setData(template.type)
             })
         }
-    },[params,templates])
+    },[])
 
     const [fileData, setFileData] = useState([]);
     const [name, setFileName] = useState("")
@@ -69,6 +73,7 @@ const DeployPage = () => {
         .then((res) => {
             setFileData([])
             if(fileData.length !== 0){
+                forceUpdate()
                 setFileName(res.data.uploaded[0].filename)
                 message.success('Arquivo enviado com sucesso')
             }
@@ -83,22 +88,23 @@ const DeployPage = () => {
 
      function handleCreateNewTransaction() {
          if(params){
-             if(data == "job_template") {
+             if(data == "job_template" ) {
                 api.post(`job/${params.id}`,{
                     csv_name: name
                  })
-             }else if (data == "workflow_job_template") {
+
+                 setTimeout(() => {
+                    navigate(`/logs/job/${lastlogid + 1}`)
+                  }, "2000")
+             
+                }else if (data == "workflow_job_template") {
                 api.post(`workflow/${params.id}`,{
                     csv_name: name
                  })
              }
          }
 
-        forceUpdate()
-
-        setTimeout(() => {
-            navigate(`/logs/${lastlogid + 1}`)
-          }, "2000")
+    
   }
 
     return(
@@ -152,7 +158,8 @@ const DeployPage = () => {
                 htmlType="submit"
                 onClick={handleCreateNewTransaction}
                 // disabled={!name}
-                disabled={lastlogid == null || !name}
+                // disabled={lastlogid == null || !name}
+                disabled={lastlogid == null}
                   >Enviar</Button>
                 </Form.Item>
             </Form>   

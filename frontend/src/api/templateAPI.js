@@ -8,13 +8,13 @@ function TemplateAPI(){
     useEffect(() => { 
         const getTemplates= async () => {
           const res = await api.get('/template')
-     
+
+
           setTemplates(res.data)        
         }
      
         getTemplates()
      },[]) 
-
 
      return{
          templates:[templates, setTemplates]

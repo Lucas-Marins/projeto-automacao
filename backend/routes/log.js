@@ -4,8 +4,14 @@ const logCrtl = require('../controllers/logController')
 const { route } = require('./user')
 
 
-router.get('/log', logCrtl.GetJobLastId)
-router.get('/log/:id', logCrtl.GetJobPerID)
+router.get('/log/job', logCrtl.GetJobLastId)
+router.get('/log/job/:id', logCrtl.GetJobPerID)
+
+router.get('/log/workflow', logCrtl.GetWorkflowLastId)
+router.get('/log/workflow/:id', logCrtl.GetWorkflowPerID)
+
+router.get('/log', logCrtl.GetAll)
+
 
 
 

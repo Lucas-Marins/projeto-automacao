@@ -2,6 +2,7 @@ import React from 'react'
 import * as FaIcons from 'react-icons/fa' 
 import * as FaBs from 'react-icons/bs'
 import * as FaRi from 'react-icons/ri'
+import * as FaLo from 'react-icons/io5'
 
 export const navigationItems = {
   sidebar: [
@@ -40,12 +41,12 @@ export const navigationItems = {
     //   to: '/dynamic-form', 
     //   text:'dynamicform'
     // },
-    // {
-    //   name: 'Settings ',
-    //   to: '/settings', 
-    //   text:'Settings',
-    //   icon: < FaBs.BsGearFill />
-    // },
+    {
+      name: 'Logs ',
+      to: '/logs', 
+      text:'Settings',
+      icon: < FaLo.IoInformationCircleSharp />
+    },
   
 
   ], 

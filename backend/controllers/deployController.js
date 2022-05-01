@@ -8,7 +8,7 @@ const deployCrtl = {
          const id = req.params.id
          const {csv_name} = req.body
 
-        const triggerhost = await axios.post(`http://192.168.1.10/api/v2/job_templates/${id}/launch/`,{
+        const triggerhost = await axios.post(`http://${process.env.IP}/api/v2/job_templates/${id}/launch/`,{
             extra_vars:{
                 csv_Lista: csv_name
             }
@@ -31,7 +31,7 @@ const deployCrtl = {
         const id = req.params.id
         const {csv_name} = req.body
 
-        const triggerhost = await axios.post(`http://192.168.1.10/api/v2/workflow_job_templates/${id}/launch/`,{
+        const triggerhost = await axios.post(`http://${process.env.IP}/api/v2/workflow_job_templates/${id}/launch/`,{
             extra_vars:{
                 csv_Lista: csv_name
             }
@@ -41,7 +41,7 @@ const deployCrtl = {
     
     GetJobLastId: async(req,res) => {
 
-        const jobs = await axios.get('http://192.168.1.10/api/v2/jobs/',config.axiosOptionsGet)
+        const jobs = await axios.get(`http://${process.env.IP}/api/v2/jobs/`,config.axiosOptionsGet)
         return res.status(200).json(jobs.data)
     }
    

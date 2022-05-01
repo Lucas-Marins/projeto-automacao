@@ -37,9 +37,9 @@ const MainRoutes = () => (
 				<Route path="automation" element={<Automation />} />
 				<Route path="deploy/:id" element={<DeployPage/>} />
 				<Route path="relatorios" element={<Relatorio/>} />
-				<Route path="logs/:id" element={<Log/>} />
+				<Route path="logs/job/:id" element={<Log/>} />
 				<Route path="relatorios/details/:id" element={<DetailsHost/>} />
-				<Route path="settings" element={<Settings />} />
+				<Route path="logs" element={<Settings />} />
 				<Route
 					path="users"
 					element={<ListUser extraItem="test extra item from router" />}

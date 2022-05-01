@@ -1,4 +1,4 @@
-import React, { FormEvent, useState, useContext } from 'react';
+import React, { FormEvent, useState, useContext, useEffect } from 'react';
 import { api } from '../../services/api';
 
 import { useNavigate } from 'react-router-dom';
@@ -42,22 +42,9 @@ const  Automation=() =>{
   return (
       <Container>
   
-
-      {/* <Aheader>
-        <h1>Automação</h1>
-      </Aheader>
-      <ToastContainer 
-        autoClose={1000}
-       />
-        < Container onSubmit={onSubmitHandler}>
-            
-            <input type="file" onChange={fileChangeHandler} />
-            <button type="submit" onClick={notify}>Enviar Arquivo</button>
-        </Container> */}
-
 <div className="site-card-wrapper">
   <div className='h-template'>
-    <h1> Selecionar  Template</h1> 
+    <h1> Templates</h1> 
         <Input 
         type="text" 
         placeholder='Search...'
@@ -72,7 +59,7 @@ const  Automation=() =>{
 
   
   <List
-    grid={{ gutter: 50, column: 4 }}
+    grid={{ gutter: 50, column: 3 }}
     dataSource={array}
     renderItem={item => (
       item.filter((val) => {

@@ -3,13 +3,21 @@ import styled from "styled-components";
 
 
 export const Container = styled.div`
-  margin: 2rem;
-  width: 80vw;
-
   
-  margin-left: 80px;
-  margin-top: 50px;
+   margin-left: 80px;
 
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+
+
+   
+   height: 100vh;
+   overflow-x: hidden;
+
+  .h-template{
+    margin-top: 4rem;
+  }
 
   h1 {
     font-weight: 700;

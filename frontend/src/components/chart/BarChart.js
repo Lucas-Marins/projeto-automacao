@@ -16,12 +16,12 @@ function BarChart() {
       user: "Clicks",
     },
     {
-      Title: "$772",
+      Title: "772",
       user: "Sales",
     },
     {
       Title: "82",
-      user: "Items",
+      user: "Playbooks",
     },
   ];
 
@@ -37,7 +37,7 @@ function BarChart() {
         />
       </div>
       <div className="chart-vistior">
-        <Title level={5}>Active Users</Title>
+        <Title level={5}>Taxa de deploy</Title>
         <Paragraph className="lastweek">
           than last week <span className="bnb2">+30%</span>
         </Paragraph>

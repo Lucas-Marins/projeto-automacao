@@ -8,30 +8,32 @@ const hostCrtl = {
     
    getHost: async (req,res) => {
 
-     const hosts = await axios.get('http://192.168.1.10/api/v2/hosts/',config.axiosOptionsGet)
+     const hosts = await axios.get(`http://${process.env.IP}/api/v2/hosts/`,config.axiosOptionsGet)
      return res.status(200).json(hosts.data)
    },
+   
+   
 
    getHostEvents: async (req,res)=>{
-    const events = await axios.get("http://192.168.1.10/api/v2/jobs/2/job_events/",config.axiosOptionsGet)
+    const events = await axios.get(`http://${process.env.IP}/api/v2/jobs/2/job_events/`,config.axiosOptionsGet)
 
     return res.status(200).json(events.data)
 
    },
-
    getAllHostFacts: async (req,res) => {
       try {        
-        const array_id = await axios.get('http://192.168.1.10/api/v2/hosts/',config.axiosOptionsGet)
+        const array_id = await axios.get(`http://${process.env.IP}/api/v2/hosts/`,config.axiosOptionsGet)
 
         const id = Object.values(array_id.data.results).map(function(item){
           return item.id
         });
 
         
-        const response = await axios.all(id.map((id) => axios.get(`http://192.168.1.10/api/v2/hosts/${id}/ansible_facts/`,config.axiosOptionsGet)))
+        const response = await axios.all(id.map((id) => axios.get(`http://${process.env.IP}/api/v2/hosts/${id}/ansible_facts/`,config.axiosOptionsGet)))
 
         const data = Object.values(response).map(function(item){
           return item.data 
+          
         });
 
         
@@ -91,7 +93,7 @@ const hostCrtl = {
 
       const id = req.params.id
 
-       const perhost = await axios.get(`http://192.168.1.10/api/v2/hosts/${id}/ansible_facts/`,config.axiosOptionsGet)
+       const perhost = await axios.get(`http://${process.env.IP}/api/v2/hosts/${id}/ansible_facts/`,config.axiosOptionsGet)
 
 
         return res.status(201).json(perhost.data)
