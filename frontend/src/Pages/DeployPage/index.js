@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext,useReducer } from "react";
+import React, { useEffect, useState, useContext,useReducer, useCallback } from "react";
 import { Container } from './style';
 
 import 'antd/dist/antd.css'
@@ -14,7 +14,7 @@ import { GlobalState } from "../../GlobalState";
 const DeployPage = () => {
     const params = useParams()
 
-    const navigate = useNavigate();
+    let navigate = useNavigate();
 
     const state = useContext(GlobalState)
     const [templates] = state.templatesAPI.templates
@@ -27,10 +27,14 @@ const DeployPage = () => {
 
     const [reduce, forceUpdate] = useReducer( x => x + 1 ,0)
 
-    const getLastID= async () => {
+   const getLastID = useCallback(async () => {
+       try {
         const res = await api.get('/log/job')
-        setLastLogId(res.data)        
-      }
+        setLastLogId(res.data)   
+       } catch (error) {
+           console.log(error)
+       }
+   },[])
 
     useEffect(() => { 
         let isCancelled = false
@@ -40,11 +44,16 @@ const DeployPage = () => {
         // }
     
         getLastID()
+
+        const interval = setInterval(() => {
+            getLastID()
+        }, 15000)
         
-        return () => {
-            isCancelled = true;
-          };
-     },[reduce]) 
+        return () => clearInterval(interval)
+        // return () => {
+        //     isCancelled = true;
+        //   };
+     },[getLastID]) 
 
     useEffect(() => {
         if(params){
@@ -98,9 +107,13 @@ const DeployPage = () => {
                   }, "2000")
              
                 }else if (data == "workflow_job_template") {
-                api.post(`workflow/${params.id}`,{
-                    csv_name: name
+                  api.post(`workflow/${params.id}`,{
+                     csv_name: name
                  })
+
+                 setTimeout(() => {
+                    navigate(`/logs/workflow/${lastlogid + 1}`)
+                 }, "2000")
              }
          }
 

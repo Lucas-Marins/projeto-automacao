@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 import 'antd/dist/antd.css'
-import {Card, Col, Row, Divider, Button,List,Input,Pagination} from 'antd'
+import {Card, Col, Row, Divider, Button,List,Input,Pagination,Spin} from 'antd'
 
 
 
@@ -38,6 +38,10 @@ const  Automation=() =>{
     for (let i = 0; i < 1; i++){
         array.push(currentPost)
     }
+
+    var newArray = array.filter((item) =>
+      item.name !== "Dev-DITI-Primeiro-Playbook"
+      )
   
   return (
       <Container>

@@ -1,65 +1,51 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 
 export const Container = styled.div`
+  
+   margin-left: 80px;
 
-width: 100%;
-height: 100vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
 
 
-/* position: relative; */
-overflow-x: hidden;
+   width: 100vw;
+   height: 100vh;
+   overflow-x: hidden;
 
-.row{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ant-card.criclebox {
-    box-shadow: 0px 20px 27px #0000000d;
-    border-radius: 12px;
+  .h-template{
+    margin-top: 4rem;
   }
 
-.h-full {
-  height: 100%;
-}
+  h1 {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 20px;
+    margin-top: 4px;
+  } 
 
+  .table{
+     /* box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); */
+    padding: 2rem;
+    box-shadow: 0px 20px 27px #0000000d;
+    border-radius: 12px;
 
-.ant-typography.lastweek {
-  color: #8c8c8c;
-  font-weight: 600;
-}
+  }
 
-.timeline-box h5 {
-  margin-bottom: 0px;
-  font-weight: 700;
-}
-.timelinelist h5 {
-  font-size: 14px;
-  font-weight: 600;
-}
+`
 
-.timelinelist span {
-  color: #8c8c8c;
-  font-size: 12px;
-}
+export const SLink = styled(Link)`
+   color: black;
+   text-decoration: none;
 
-.timelinelist h5 {
-  font-size: 14px;
-  font-weight: 600;
-}
+   transition: filter 0.3s;
 
-.timelinelist span {
-  color: #8c8c8c;
-  font-size: 12px;
-}
-
-.mb-24 {
-
-  margin-bottom: 24px;
-}
-
-
-
+   &:hover{
+     color: #969CB3;
+     filter: brightness(0.9);
+   }
 `

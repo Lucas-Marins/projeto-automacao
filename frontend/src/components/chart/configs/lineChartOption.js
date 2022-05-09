@@ -1,4 +1,6 @@
 const lineChartOption = {
+
+
   series: [
     {
       name: "Failed",

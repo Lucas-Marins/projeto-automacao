@@ -11,7 +11,7 @@ export const Container = styled.div`
    justify-content: flex-start;
 
 
-   
+   width: 100vw;
    height: 100vh;
    overflow-x: hidden;
 

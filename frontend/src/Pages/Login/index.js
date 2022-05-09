@@ -19,23 +19,6 @@ const Login = () => {
 	}
 
 
-	// useEffect(() => {
-	// 	const socket = io('ws://localhost:3333')
-	
-	// 	socket.on('connnection', () => {
-	// 	  console.log('connected to server');
-	// 	})
-	
-	// 	socket.on('message', (message) => {
-	// 	  console.log(message);
-	// 	})
-	
-	// 	socket.on('disconnect', () => {
-	// 	  console.log('Socket disconnecting');
-	// 	})
-	
-	//   }, [])
-
 	return (
 	
 		// 	<h2>Bem-Vindo a página de Login </h2>

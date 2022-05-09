@@ -2,7 +2,7 @@ import React, { useState,useContext } from "react";
 import { Container, SLink } from "./style";
 
 import 'antd/dist/antd.css'
-import {Table,Input,Button,Divider} from 'antd'
+import {Table,Input,Button,Divider,Spin} from 'antd'
 import {SearchOutlined} from '@ant-design/icons'
 
 import { GlobalState } from "../../GlobalState";
@@ -15,11 +15,6 @@ const  Relatorio = () =>{
     const state = useContext(GlobalState)
     const [facts] = state.hostsAPI.facts
     const [hosts] = state.hostsAPI.hosts
-
-
-    console.log(hosts)
-
-
 
     const [page,setPage] = useState(1)
     const [pageSize, setPageSize] = useState(10)
@@ -170,8 +165,9 @@ const  Relatorio = () =>{
   <Divider style={{width: '80vw'}}/> 
 
    <Table
+    loading={hosts.length === 0 ? <Spin /> : ''}
     className="table"
-    rowKey="ansible_nodename" 
+    rowKey="id"
     dataSource={hosts}
     columns={columns}
     pagination={{

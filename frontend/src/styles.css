@@ -51,13 +51,12 @@ body{
     background: linear-gradient(0deg,#ecebeb 0%, #ffffff 80%);
     background: -webkit-linear-gradient(0deg,#ecebeb 0%, #ffffff 80%);
     background: -moz-linear-gradient(0deg,#ecebeb 0%, #ffffff 80%);
-    
+
 }
 
 
 .app{
     display: flex;
-
 }
 
 /* html {

@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const deployCrtl = require('../controllers/deployController')
+const auth = require('../middleware/auth')
 
 
 

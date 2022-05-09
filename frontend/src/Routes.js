@@ -4,7 +4,7 @@ import {Routes, Route, Navigate} from "react-router-dom"
 
 import Dashboard from "./Pages/Dashboard"
 import Tabs from "./components/Tabs"
-import Settings from "./Pages/Settings"
+
 import Login from "./Pages/Login"
 import ListUser from "./Pages/ListUser"
 import SingleUser from "./Pages/SingleUser"
@@ -15,6 +15,8 @@ import  Relatorio  from "./Pages/Relatorio"
 import DeployPage from "./Pages/DeployPage"
 import DetailsHost from "./Pages/DetailsHost"
 import Log from "./Pages/Log"
+import LogJob from "./Pages/LogJob"
+import LogWorkflow from "./Pages/LogWorkflow"
 
 import Tab1 from "./components/Tab1"
 import Tab2 from "./components/Tab2"
@@ -32,14 +34,16 @@ const MainRoutes = () => (
 		{/** Wrap all Route under ProtectedRoutes element */}
 		<Route path="/" element={<ProtectedRoutes />}>
 		
-				<Route path="/" element={<Login />} />
+				<Route path="/login" element={<Login />} />
 				<Route path="dashboard" element={<Dashboard />} />
 				<Route path="automation" element={<Automation />} />
 				<Route path="deploy/:id" element={<DeployPage/>} />
 				<Route path="relatorios" element={<Relatorio/>} />
-				<Route path="logs/job/:id" element={<Log/>} />
+				<Route path="logs" element={<Log />} />
+				<Route path="logs/job/:id" element={<LogJob/>} />
+				<Route path="logs/workflow/:id" element={<LogWorkflow/>} />
 				<Route path="relatorios/details/:id" element={<DetailsHost/>} />
-				<Route path="logs" element={<Settings />} />
+				
 				<Route
 					path="users"
 					element={<ListUser extraItem="test extra item from router" />}

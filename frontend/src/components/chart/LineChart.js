@@ -4,6 +4,7 @@ import { MinusOutlined } from "@ant-design/icons";
 import lineChartOption from "./configs/lineChartOption";
 
 function LineChart() {
+
   const { Title, Paragraph } = Typography;
 
   return (

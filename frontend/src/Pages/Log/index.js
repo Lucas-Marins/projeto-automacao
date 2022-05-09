@@ -1,204 +1,233 @@
-import React, { useState,useEffect,useReducer, useCallback } from "react"
-import { api } from "../../services/api";
+import React, { useState,useContext, useEffect } from "react";
+import { Container, SLink } from "./style";
 
 import 'antd/dist/antd.css'
-import Paragraph from "antd/lib/typography/Paragraph";
-import {
-  Steps,
-  Card,
-  Col,
-  Row,
-  Typography,
-  Popover,
-  Tooltip,
-  Progress,
-  Upload,
-  message,
-  Button,
-  Timeline,
-  Radio,
-  Divider,
-  Menu,
-} from "antd";
-import {
-  ToTopOutlined,
-  MenuUnfoldOutlined,
-  RightOutlined,
-  LoadingOutlined,
-  CheckOutlined
-  
-} from "@ant-design/icons";
+import {Table,Input,Button,Divider,Skeleton,Spin, Empty} from 'antd'
+import {SearchOutlined} from '@ant-design/icons'
 
-import { Container } from "./style"
-import { useParams } from "react-router-dom";
-import io from 'socket.io-client'
+import { GlobalState } from "../../GlobalState";
+import { Link } from "react-router-dom";
 
-
-const { Step } = Steps;
-
+import { api } from "../../services/api";
 
 
 const Log = () => {
-    const params = useParams()
-    const [log, setLog] = useState([])
-
-
-    const biggestNames = log
-          .filter(item => item.event_display == "Playbook Complete")
-          .map(log => log.event_display);
-          
-    const results = biggestNames.map(function(item){
-      return item
-    })
-
-    const getAPIData = useCallback(async () => {
-      try {
-        const res = await  api.get(`log/job/${params.id}`)
-        setLog(res.data)
-      } catch (error) { 
-        console.log(error)
-      }
-    })
-
-  
-    useEffect(() => {
-
-      // if(params){
-      //         api.get(`log/job/${params.id}`)
-      //         .then(res => setLog(res.data))
-    
-      // }
-
-      // const getAPIData = async () => {
-      //   try {
-      //        const res = await  api.get(`log/job/${params.id}`)
-      //        setLog(res.data)
-      //   } catch (error) {
-      //        console.log(error)
-      //   }
-      // }
-      if (results == 'Playbook Complete')  return null
-      getAPIData()
-
-      // const interval = setInterval(() => {
-      //   getAPIData()
-      // }, 1000)
-
-      // return () => clearInterval(interval)
-      
-    },[log])
-
-  
-
-
-	// useEffect(() => {
-  //   if (params){
-  //     const socket = io('ws://localhost:3333')
 	
-  //     socket.on('connnection', () => {
-  //         console.log("client connection done.....");
-  //     })
+	const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
 
-  //     socket.emit('receive_id', params.id)
 
-  //     socket.on('FromAPI', (data) =>{
-  //       for(let i = 0; i <= data.results.length; i++){
-  //         console.log(i)
-  //       }
-  //     })
+    useEffect(() => { 
+
+        setLoading(true)
+
+        const getLastID= async () => {
+            const res = await api.get('/log/')
+            setLoading(false)
+            setData(res.data)        
+          }
     
-  //     socket.on('FromAPI', data => {
-  //       setLog(data.results)
-  //     })
+        getLastID()
+     },[]) 
 
-  //     return () => socket.off('FromAPI')
-    
-  //     socket.on('disconnect', () => {
-  //       console.log('Socket disconnecting');
-  //     })
+    console.log(data)
+	
+    const [page,setPage] = useState(1)
+    const [pageSize, setPageSize] = useState(20)
+      
+    // const columns =  [
+    //     {
+    //         title: 'Name',
+    //         dataIndex: 'name',
+    //         key: 'key',
+    //         render: name => {
+    //             return <a >{name}</a>
+    //         },
+    //         filterDropdown: ({setSelectedKeys, selectedKeys, confirm, clearFilters}) => {
+    //             return ( 
+    //             <>
+    //             <Input 
+    //                autoFocus 
+    //                placeholder="Faça sua busca" 
+    //                value={selectedKeys[0]}
+    //                onChange={(e) => {
+    //                 setSelectedKeys(e.target.value ?[ e.target.value] : [])
+    //                 confirm({closeDropdown: false})
+    //                }}
+    //                onPressEnter={() => {
+    //                    confirm()
+    //                }}
+    //                onBlur = {() => {
+    //                    confirm()
+    //                }}
+    //             ></Input>; 
+                
+    //             {/* <Button onClick={() => {
+    //                 confirm()
+    //             }} type="primary" >
+    //                 Search
+    //             </Button>
+    //             <Button onClick={() => {
+    //                 clearFilters()
+    //             }} type="danger" >
+    //                 Reset
+    //             </Button> */}
+    //         </>)
+    //         },
+    //         filterIcon: () => {
+    //             return <SearchOutlined />
+    //         },
+    //         onFilter:(value,record) => {
+    //             return record.name.toLowerCase().includes(value.toLowerCase())
+    //         }
+    //     },
+    //     {
+    //         title: 'Age',
+    //         dataIndex: 'age',
+    //         key: 'key',
+    //         sorter: (a,b) => a.age - b.age
+    //     },
+    //     {
+    //         title: 'Address',
+    //         dataIndex: 'address',
+    //         key: 'key'
+    //     },
+    //     {
+    //         title: 'Graduated',
+    //         key: 'key',
+    //         render: payload => {
+    //             return <p>{payload.age > 20 ? 'Passou': 'Reprovou'}</p>
+    //         },
+    //         filters:[
+    //             { text:'Passou', value:true},
+    //             { text:'Reprovou', value:false}
+    //         ],
+    //         onFilter:(value, record) => {
+    //             return record.completed === value
+    //         }
+    //     },
+    // ];
 
-  //     return () => socket.off('FromAPI')
-    
-  //   }
-		
-	//   }, [])
+    const columns = [
+        {
+            title: 'Id',
+            dataIndex: ['id'],
+            key: 'id',
+			render: (text,record) => {
+                return (      
+                 <>
+                    <SLink key={record.id} to={'/logs/job/' + record.id}>{text}</SLink>
+                 </>
 
-    if(log.length === 0) return null;
-   
-    const { Title, Text } = Typography;
+                )
+            },
+			filterDropdown:({setSelectedKeys, selectedKeys,confirm}) => {
+                return(
+                    <Input
+                     autoFocus
+                     placeholder="Digite o Id"
+                     value={selectedKeys[0]}
+                     onChange={(e) => {
+                        setSelectedKeys(e.target.value? [e.target.value]: [] )
+                        confirm({closeDropdown: false})
+                     }}
+                     onPressEnter={() => {
+                         confirm()
+                     }}
+                     onBlur={() => {
+                         confirm()
+                     }}
+                    >
+                    </Input>
+                )
+            },
+            filterIcon: () => {
+                return <SearchOutlined />
+            },
+            onFilter:(value,record) => {
+                 return record.id.toString().toLowerCase().includes(value.toLowerCase())
+				// return console.log(record.id)
+				 
+            }
+        },
+        {
+            title: 'Nome',
+            dataIndex: ['name'],
+            key: 'name',
+            filterDropdown:({setSelectedKeys, selectedKeys,confirm}) => {
+                return(
+                    <Input
+                     autoFocus
+                     placeholder="Digite o nome do playbook"
+                     value={selectedKeys[0]}
+                     onChange={(e) => {
+                        setSelectedKeys(e.target.value? [e.target.value]: [] )
+                        confirm({closeDropdown: false})
+                     }}
+                     onPressEnter={() => {
+                         confirm()
+                     }}
+                     onBlur={() => {
+                         confirm()
+                     }}
+                    >
+                    </Input>
+                )
+            },
+            filterIcon: () => {
+                return <SearchOutlined />
+            },
+            onFilter:(value,record) => {
+                 return record.name.toLowerCase().includes(value.toLowerCase())
+				// return console.log(record.id)
+				 
+            }
+        },
+        {
+            title: 'Status',
+            dataIndex: ['status'],
+            key: 'status'
+        },
+        // {
+        //     title: 'Versão',
+        //     dataIndex: ['ansible_distribution_version'],
+        //     key: 'ansible_distribution_version'
+        // },
+        // {
+        //     title: 'Virtualização',
+        //     dataIndex: ['ansible_virtualization_type'],
+        //     key: 'ansible_virtualization_type'
+        // },
+        
+    ]
+ return(
+  
+  <Container>
+  <h1 className='h-template'> Logs </h1> 
+  <Divider style={{width: '80vw'}}/> 
 
-      var newArray = log.filter((item) =>
-       item.event_display !=="Verbose"  
-       && item.event_display !=="Play Started (all)" 
-       && item.event_display !=="Host Started"  
-       && item.event_display !=="Host OK"  
-       && item.event_display !=="Task Started (Gathering Facts)"   );
 
-	return (
-	<Container>
-        <Row className="row" gutter={[16, 0]}>
-          <Col xs={10} sm={10} md={1} lg={10} xl={8} className="mb-24">
-            <Card bordered={false} className="criclebox h-full">
-              <div className="timeline-box">
-                <Title level={5}>Status</Title>
-                <Paragraph className="lastweek" style={{ marginBottom: 24 }}>
-                  <span className="bnb2">ID: {params.id}</span>
-                </Paragraph>
+            <Table
+             loading={data.length === 0 ? <Spin /> : ''}
+            className="table"
+            rowKey="id"
+            dataSource={data}
+            columns={columns}
+            pagination={{
+                current:page,
+                total: 100000,
+                pageSize:pageSize,
+                onChange:(page,pageSize) => {
+                    setPage(page);
+                    setPageSize(pageSize)
+                }
+            }}
+        >
 
-                <Timeline
-                  pending={ results == 'Playbook Complete' ? 'Finalizado' : 'Esperar Finalização....'}
-                  pendingDot={results == 'Playbook Complete' ? <CheckOutlined /> : <LoadingOutlined />}
-                  mode="alternate"
-                >
-                  {newArray.map((t, index) => (
-                    <Timeline.Item
-                    label 
-                    color={t.failed == false ? 'blue' : 'red'} 
-                    key={index}>                 
-                      <Title  level={5}>{t.event_display}</Title>
-                      <Popover content={t.stdout.replace(/[*["{}\\;^\\/#\[*?\]#]/g, '')} trigger="hover">
-                        <Text > {t.stdout == "" ? '': 'Informações'}</Text>
-                      </Popover>
-                    </Timeline.Item> 
-                  ))}
-                </Timeline>
-
-              </div>
-            </Card>
-          </Col>
-        </Row>
-  </Container>              
-	)
+        </Table>
+ 
+  </Container>
+ )
 }
 
-export default Log;
-
-
-
-
-
-
-
-// <Menu mode="inline" >
-// <Menu.Item  >
-//   Navigation One
-//   <span>Option 1</span>
-// </Menu.Item>
-// </Menu>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default Log
