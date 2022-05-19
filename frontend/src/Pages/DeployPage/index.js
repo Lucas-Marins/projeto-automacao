@@ -113,7 +113,7 @@ const DeployPage = () => {
 
                  setTimeout(() => {
                     navigate(`/logs/workflow/${lastlogid + 1}`)
-                 }, "2000")
+                 }, "15000")
              }
          }
 

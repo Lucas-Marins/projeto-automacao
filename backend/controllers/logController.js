@@ -179,34 +179,49 @@ const logCrtl = {
             }
         }
 
-        async function getPageOfResults(page) {
+        async function getPageOfResultsJob(page) {
             const response =  await axios.get(`http://${process.env.IP}/api/v2/jobs/?page=${page}`,config.axiosOptionsGet)
             return response.data 
         }
 
-        let customers = [];
+        async function getPageOfResultsWorkflow(page){
+            const response =  await axios.get(`http://${process.env.IP}/api/v2/job_events/?page=${page}`,config.axiosOptionsGet)
+            return response.data
+        }
+
+        let jobs = [];
+        let workflow = []
         let TotalSize = null;
         let page = 1;
         
             while (page != TotalSize) {
-                const response =  await UrlExist(`http://${process.env.IP}/api/v2/jobs/?page=${page}`)
+                const responsejob =  await UrlExist(`http://${process.env.IP}/api/v2/jobs/?page=${page}`)
+                const responseworkflow = await UrlExist(`http://${process.env.IP}/api/v2/job_events/?page=${page}`)
 
-                if(response.status == 200) {
-                    const newResults = await getPageOfResults(page);
+                if(responsejob.status == 200 && responseworkflow.status == 200) {
+                    const newResultsJobs = await getPageOfResultsJob(page);
+                    const newResultsWorkflow = await getPageOfResultsWorkflow(page)
                     page++;
-                    customers = customers.concat(newResults);
+                    jobs = jobs.concat(newResultsJobs);
+                    workflow = workflow.concat(newResultsWorkflow)
                 }else {
                     break
                 }
             }
 
-        const data = customers.map(function(item) {
+        const jobdata = jobs.map(function(item) {
             return item.results
         })
 
-        const flat = data.flat()
+        const workflowdata = jobs.map(function(item) {
+            return item.results
+        })
 
-        const reverse = flat.reverse()
+        const objTwo = [...jobdata, ...workflowdata]
+
+        const flatjob = jobdata.flat()
+
+        const reverse = flatjob.reverse()
                 
         return res.status(200).json(reverse)
     },
