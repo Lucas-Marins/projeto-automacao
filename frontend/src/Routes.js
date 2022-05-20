@@ -34,7 +34,7 @@ const MainRoutes = () => (
 		{/** Wrap all Route under ProtectedRoutes element */}
 		<Route path="/" element={<ProtectedRoutes />}>
 		
-				<Route path="/login" element={<Login />} />
+				<Route path="/" element={<Login />} />
 				<Route path="dashboard" element={<Dashboard />} />
 				<Route path="automation" element={<Automation />} />
 				<Route path="deploy/:id" element={<DeployPage/>} />
