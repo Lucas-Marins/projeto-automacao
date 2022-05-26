@@ -22,38 +22,35 @@ const DeployPage = () => {
 
     const [lastlogid, setLastLogId] =  useState(null);
 
-    console.log(lastlogid)
-
-
     const [reduce, forceUpdate] = useReducer( x => x + 1 ,0)
 
-   const getLastID = useCallback(async () => {
-       try {
-        const res = await api.get('/log/job')
-        setLastLogId(res.data)   
-       } catch (error) {
-           console.log(error)
-       }
-   },[])
+//    const getLastID = useCallback(async () => {
+//        try {
+//         const res = await api.get('/log/job')
+//         setLastLogId(res.data)   
+//        } catch (error) {
+//            console.log(error)
+//        }
+//    },[])
 
-    useEffect(() => { 
-        let isCancelled = false
-        // const getLastID= async () => {
-        //   const res = await api.get('/log/job')
-        //    setLastLogId(res.data)        
-        // }
+    // useEffect(() => { 
+    //     let isCancelled = false
+    //     // const getLastID= async () => {
+    //     //   const res = await api.get('/log/job')
+    //     //    setLastLogId(res.data)        
+    //     // }
     
-        getLastID()
+    //     getLastID()
 
-        const interval = setInterval(() => {
-            getLastID()
-        }, 15000)
+    //     const interval = setInterval(() => {
+    //         getLastID()
+    //     }, 15000)
         
-        return () => clearInterval(interval)
-        // return () => {
-        //     isCancelled = true;
-        //   };
-     },[getLastID]) 
+    //     return () => clearInterval(interval)
+    //     // return () => {
+    //     //     isCancelled = true;
+    //     //   };
+    //  },[getLastID]) 
 
     useEffect(() => {
         if(params){
@@ -82,7 +79,7 @@ const DeployPage = () => {
         .then((res) => {
             setFileData([])
             if(fileData.length !== 0){
-                forceUpdate()
+                // forceUpdate()
                 setFileName(res.data.uploaded[0].filename)
                 message.success('Arquivo enviado com sucesso')
             }
@@ -102,22 +99,27 @@ const DeployPage = () => {
                     csv_name: name
                  })
 
-                 setTimeout(() => {
-                    navigate(`/logs/job/${lastlogid + 1}`)
-                  }, "2000")
+                //  setTimeout(() => {
+                //     navigate(`/logs/job/${lastlogid + 1}`)
+                //   }, "2000")
+
+                  setTimeout(() => {
+                    navigate('/dashboard')
+                 }, "1000")
              
                 }else if (data == "workflow_job_template") {
                   api.post(`workflow/${params.id}`,{
                      csv_name: name
                  })
 
+                //  setTimeout(() => {
+                //     navigate(`/logs/workflow/${lastlogid + 1}`)
+                //  }, "15000")
                  setTimeout(() => {
-                    navigate(`/logs/workflow/${lastlogid + 1}`)
-                 }, "15000")
+                    navigate('/dashboard')
+                 }, "1000")
              }
          }
-
-    
   }
 
     return(
@@ -172,7 +174,7 @@ const DeployPage = () => {
                 onClick={handleCreateNewTransaction}
                 // disabled={!name}
                 // disabled={lastlogid == null || !name}
-                disabled={lastlogid == null}
+                // disabled={lastlogid == null}
                   >Enviar</Button>
                 </Form.Item>
             </Form>   
