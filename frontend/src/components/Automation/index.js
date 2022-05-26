@@ -23,7 +23,7 @@ const  Automation=() =>{
   const [templates] = state.templatesAPI.templates
    
   const [page,setPage] = useState(1)
-  const [pageSize, setPageSize] = useState(16)  
+  const [pageSize, setPageSize] = useState(20)  
 
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -92,7 +92,7 @@ const  Automation=() =>{
     )}
     pagination={{
       current:page,
-      total: 200,
+      total: 1000,
       pageSize:pageSize,
       onChange:(page,pageSize) => {
           setPage(page)
