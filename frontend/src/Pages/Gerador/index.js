@@ -214,11 +214,12 @@ const Generator = () => {
     ]}
   >
   </Modal>
+<LContainer>
   <Form>
     <Form.Item >
         <Input
           onChange={(event) => setTeste(event.target.value)}
-          placeholder="Adiciona uma coluna"
+          placeholder="Selecionar nome da coluna"
           required
         ></Input>
       </Form.Item>
@@ -237,10 +238,17 @@ const Generator = () => {
       >
         Adicionar Linha
       </Button>
-
+     
     </Form>
+    <Button
+      type="primary"
+    >
+         <CSVLink data={data} separator={";"} enclosingCharacter={``} onClick={isNull(data)}>Gerar csv</CSVLink>
+    </Button>
+  
+  </LContainer> 
 
-
+<RContainer>
     <Form form={form} component={false}>
 
       <Table
@@ -254,7 +262,7 @@ const Generator = () => {
         pagination={data.length > pageSize && { pageSize }} 
       />
     </Form>
-    <CSVLink data={data} separator={";"} enclosingCharacter={``} onClick={isNull(data)}>Gerar csv</CSVLink>
+    </RContainer>
     </Container>
     </>
   );
