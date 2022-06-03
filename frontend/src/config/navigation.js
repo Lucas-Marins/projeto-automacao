@@ -20,10 +20,10 @@ export const navigationItems = {
     //   icon: < FaIcons.FaUserFriends />
     // },
     {
-      name: 'Relatórios ',
+      name: 'Servidores ',
       to: '/relatorios', 
       text:'Relatórios',
-      icon: < FaIcons.FaClipboardList />
+      icon: < FaIcons.FaServer />
     },
     {
       name: 'Automação ',
@@ -42,12 +42,17 @@ export const navigationItems = {
     //   text:'dynamicform'
     // },
     {
+      name: 'Formulário ',
+      to: '/generator', 
+      text:'Settings',
+      icon: < FaIcons.FaClipboardList />
+    },
+    {
       name: 'Logs ',
       to: '/logs', 
       text:'Settings',
       icon: < FaLo.IoInformationCircleSharp />
     },
-  
 
   ], 
   footer: [], 

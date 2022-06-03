@@ -12,7 +12,7 @@ const deployCrtl = {
         // const {_id, name} = user
 
          const id = req.params.id
-         const {csv_name} = req.body
+         const {csv_name,v_fstmp } = req.body
 
      
         //  const person = {
@@ -22,6 +22,7 @@ const deployCrtl = {
         const triggerhost = await axios.post(`http://${process.env.IP}/api/v2/job_templates/${id}/launch/`,{
             extra_vars:{
                 csv_Lista: csv_name,
+                v_fstmp: v_fstmp
                 // usuario: name
             },
         }, config.axiosOptionsPost)

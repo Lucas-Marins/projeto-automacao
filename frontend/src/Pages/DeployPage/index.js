@@ -96,7 +96,8 @@ const DeployPage = () => {
          if(params){
              if(data == "job_template" ) {
                 api.post(`job/${params.id}`,{
-                    csv_name: name
+                    csv_name: name,
+                    v_fstmp: '/home/usreoc'
                  })
 
                 //  setTimeout(() => {
@@ -109,7 +110,8 @@ const DeployPage = () => {
              
                 }else if (data == "workflow_job_template") {
                   api.post(`workflow/${params.id}`,{
-                     csv_name: name
+                     csv_name: name,
+                     v_fstmp: '/home/usreoc'
                  })
 
                 //  setTimeout(() => {

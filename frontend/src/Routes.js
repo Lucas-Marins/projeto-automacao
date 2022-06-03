@@ -17,6 +17,7 @@ import DetailsHost from "./Pages/DetailsHost"
 import Log from "./Pages/Log"
 import LogJob from "./Pages/LogJob"
 import LogWorkflow from "./Pages/LogWorkflow"
+import Generator from "./Pages/Gerador"
 
 import Tab1 from "./components/Tab1"
 import Tab2 from "./components/Tab2"
@@ -39,6 +40,7 @@ const MainRoutes = () => (
 				<Route path="automation" element={<Automation />} />
 				<Route path="deploy/:id" element={<DeployPage/>} />
 				<Route path="relatorios" element={<Relatorio/>} />
+				<Route path="generator" element={<Generator/>} />
 				<Route path="logs" element={<Log />} />
 				<Route path="logs/job/:id" element={<LogJob/>} />
 				<Route path="logs/workflow/:id" element={<LogWorkflow/>} />
