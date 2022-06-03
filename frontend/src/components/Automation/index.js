@@ -78,7 +78,6 @@ const  Automation=() =>{
             <List.Item  >
               <Card className="criclebox " title={val.name} hoverable={false}>
                 <SLink to={'/deploy/' + val.id}>
-                  
                       Selecionar
                 </SLink>
                 </Card>

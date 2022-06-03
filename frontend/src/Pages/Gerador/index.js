@@ -54,6 +54,8 @@ const Generator = () => {
   const [visible, setVisible] = useState(false);
   const pageSize = 500;
 
+  console.log(data)
+
   const isEditing = (record) => record.key === editingKey;
   const showModal = () => {
     setVisible(true);
@@ -169,7 +171,22 @@ const Generator = () => {
           </Typography.Link>
         );
       }
-    }
+    },
+    {
+      title: "Máquina IP",
+      dataIndex: "ip",
+      editable: true
+    },
+    {
+      title: "Vcenter Dominio",
+      dataIndex: "vcenter",
+      editable: true
+    },
+    {
+      title: "ip_noc",
+      dataIndex: "ip_noc",
+      editable: true
+    },
   ];
 
   const objTwo = Object.assign(columnsdata,columns)
@@ -193,15 +210,16 @@ const Generator = () => {
   return (
   <>
   <Container>
-  {/* <Button type="primary" onClick={showModal}>
-        Olha a mágica
-  </Button> */}
+  <Button type="primary" onClick={showModal}>
+        Pega a visão
+  </Button>
 
   <Modal
     visible={visible}
     title="Gerador"
     onOk={handleOk}
     onCancel={handleCancel}
+    width={2000}
     footer={[
       <Button key="back" onClick={handleCancel}>
         Retornar
@@ -213,8 +231,7 @@ const Generator = () => {
       </Button>
     ]}
   >
-  </Modal>
-<LContainer>
+
   <Form>
     <Form.Item >
         <Input
@@ -233,7 +250,7 @@ const Generator = () => {
         onClick={handleAdd}
         type="primary"
         style={{
-          marginBottom: 16
+          marginBottom: 10
         }}
       >
         Adicionar Linha
@@ -246,9 +263,59 @@ const Generator = () => {
          <CSVLink data={data} separator={";"} enclosingCharacter={``} onClick={isNull(data)}>Gerar csv</CSVLink>
     </Button>
   
-  </LContainer> 
 
-<RContainer>
+
+
+    <Form form={form} component={false}>
+
+      <Table
+        components={{
+          body: {
+            cell: EditableCell
+          }
+        }}
+        dataSource={data}
+        columns={mergedColumns}
+        pagination={data.length > pageSize && { pageSize }} 
+      />
+    </Form>
+
+  </Modal>
+    <LContainer>
+  <Form>
+    <Form.Item >
+        <Input
+          onChange={(event) => setTeste(event.target.value)}
+          placeholder="Selecionar nome da coluna"
+          required
+        ></Input>
+      </Form.Item>
+      <Form.Item onClick={handleColumns}>
+        <Button  type="primary" htmlType="submit">
+          Adicionar Coluna
+        </Button>
+      </Form.Item>
+
+      <Button
+        onClick={handleAdd}
+        type="primary"
+        style={{
+          marginBottom: 10
+        }}
+      >
+        Adicionar Linha
+      </Button>
+     
+    </Form>
+    <Button
+      type="primary"
+    >
+         <CSVLink data={data} separator={";"} enclosingCharacter={``} onClick={isNull(data)}>Gerar csv</CSVLink>
+    </Button>
+  
+    </LContainer> 
+
+     <RContainer>
     <Form form={form} component={false}>
 
       <Table
