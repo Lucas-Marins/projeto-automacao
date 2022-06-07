@@ -51,7 +51,7 @@ const  Automation=() =>{
     <h1> Templates</h1> 
         <Input 
         type="text" 
-        placeholder='Search...'
+        placeholder='Procurar...'
         onChange={(event) => {
           setSearchTerm(event.target.value)
         }}

@@ -70,6 +70,24 @@ body{
 } */
 
 
+.form{
+    display: flex;
+    width: 500px;
+    justify-content: space-between;
+}
+
+.button1{
+ display: flex;
+
+}
+
+.button-text{
+    margin-left: 30rem;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+
 .react-modal-overlay{
     background: rgba(0,0,0,0.5);
 
