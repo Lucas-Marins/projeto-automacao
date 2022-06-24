@@ -13,12 +13,12 @@ export const navigationItems = {
       icon: < FaRi.RiDashboardFill />
       
     },
-    // {
-    //   name: 'Usuários ',
-    //   to: '/users', 
-    //   text:'Usuários',
-    //   icon: < FaIcons.FaUserFriends />
-    // },
+    {
+      name: 'Usuários ',
+      to: '/users', 
+      text:'Usuários',
+      icon: < FaIcons.FaUserFriends />
+    },
     {
       name: 'Servidores ',
       to: '/relatorios', 

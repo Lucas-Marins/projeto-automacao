@@ -1,56 +1,119 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {Link, useLocation} from "react-router-dom"
+
+
+import 'antd/dist/antd.css';
+import {
+	Button,
+	Cascader,
+	Checkbox,
+	DatePicker,
+	Form,
+	Input,
+	InputNumber,
+	Radio,
+	Select,
+	Switch,
+	TreeSelect,
+	message,
+  } from 'antd';
+import { useState } from 'react';
+import { api } from "../../services/api";
+const { Option } = Select;
 
 // import { UserType } from "../ListUser"
 
 const NewUser = () => {
-	// const [newUserData, setNewUserData] = React.useState<UserType>({
-	// 	id: 0,
-	// 	name: "",
-	// 	phone: "",
-	// 	email: "",
-	// 	website: "",
-	// })
+	const [name, setName] = useState('')
+	const [password, setPassword] = useState('')
+	const [email, setEmail] = useState('')
+	const [organization,setOrganization] = useState([])
+	const [organizationid,setOrganizationId] = useState('')
+	
 
-	// const location = useLocation()
+	useEffect(() => {
+		api.get(`organization`)
+		.then(res => setOrganization(res.data.results))
+   },[])
 
-	// //location state
-	// const [locatioState, setLocationState] = React.useState({
-	// 	from: "",
-	// 	userName: "",
-	// })
+   console.log(organization)
 
-	// React.useEffect(() => {
-	// 	console.log("location from new user", location)
-	// 	if (location.state) {
-	// 		let _state = location.state 
-	// 		setLocationState(_state)
-	// 	}
-	// }, [location])
+	const Register = async e =>{
+		e.preventDefault()
+		try {
+		  await api.post('/user/register', {
+			name: name,
+			email: email,
+			password: password,
+			organization_id: organizationid
+		  })
+		  
+		  setName('')
+		  setEmail('')
+		  setPassword('')
+		  message.success('Usuário criado')
+		} catch (err) {
+		//   alert(err.response.data.msg)
+		  message.error(err.response.data.msg)
+		}
+	  }
 
-	// const handleChange = (e) => {
-	// 	const _newUserData = {
-	// 		...newUserData,
-	// 	} 
+	  const handleChange = (value) => {
+        // console.log(`selected ${value}`);
+        setOrganizationId(value)
+      };
 
-	// 	_newUserData[e.target.name] = e.target.value
+  return (
+    <Form
+    //   labelCol={{
+    //     span: 4,
+    //   }}
+    //   wrapperCol={{
+    //     span: 14,
+    //   }}
+      layout="horizontal"
+	  onSubmitCapture={Register}
+    //   onValuesChange={onFormLayoutChange}
+    >
 
-	// 	setNewUserData(_newUserData)
-	// }
-
-	// const handlePostData = () => {
-	// 	console.log("new user data", newUserData)
-
-	// 	//post request for API
-
-	// 	alert("Data posted successfully")
-	// }
-
-	return (
-		<div className="new-user">
-			<h1>Hello form new user</h1>
-		</div>
-	)
+      <Form.Item label="Usuário">
+	  <Input placeholder="Usuário" value={name} onChange={event => setName(event.target.value)} ></Input>
+      </Form.Item>
+	  <Form.Item label="E-mail">
+	  <Input placeholder="Email" value={email} onChange={event => setEmail(event.target.value)} ></Input>
+      </Form.Item>
+	  <Form.Item label="Senha">
+	  <Input.Password placeholder="Password" value={password} onChange={event => setPassword(event.target.value)} required></Input.Password>
+      </Form.Item>
+      <Form.Item label="Organização">
+			<Select
+			// defaultValue="lucy"
+			style={{
+				width: 200,
+			}}
+			onChange={handleChange}
+			placeholder="Organização"
+			optionFilterProp="children"
+			>
+				<>
+				{organization.map((org) => (
+					<Option value={org.id}>{org.name}</Option>
+				))}
+				</>
+			</Select>
+      </Form.Item>
+	  <Form.Item>
+                 <Button block type="primary" htmlType="submit" >Salvar</Button>
+	  </Form.Item>
+	  
+	  {/* <Form.Item label="Admin?">
+        <Radio.Group>
+          <Radio value="apple"> Sim </Radio>
+          <Radio value="pear"> Não </Radio>
+        </Radio.Group>
+      </Form.Item> */}
+    </Form>
+  );
 }
 
 export default NewUser

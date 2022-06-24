@@ -19,7 +19,11 @@ const { Option } = Select;
 const  Automation=() =>{
   const state = useContext(GlobalState)
   const [templates] = state.templatesAPI.templates
-   
+  const [user] = state.userAPI.userInfo
+
+  const {organization_id} = user   
+
+
   const [page,setPage] = useState(1)
   const [pageSize, setPageSize] = useState(20)  
 
@@ -41,11 +45,10 @@ const  Automation=() =>{
     },[])
 
     useEffect(() => {
-           api.get(`organization/${organizationid}`)
+           api.get(`organization/${organization_id}`)
           .then(res => setOrganizationTemplate(res.data))
-    },[organizationid])
+    },[organization_id])
 
-  console.log(organizationtemplate)
 
     const array = []
     for (let i = 0; i < 1; i++){
@@ -77,7 +80,7 @@ const  Automation=() =>{
         allowClear
         />
         
-    <Select
+    {/* <Select
       // defaultValue="lucy"
       style={{
         width: 200,
@@ -91,7 +94,7 @@ const  Automation=() =>{
             <Option value={org.id}>{org.name}</Option>
           ))}
         </>
-    </Select>
+    </Select> */}
 </div>
   <Divider style={{width: '70vw'}}/>
 

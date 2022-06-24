@@ -7,11 +7,11 @@ const useAuth = () => {
 
 	let user: any
 
-	const _user = localStorage.getItem("user")
+	const _user = localStorage.getItem("firstLogin")
 
 	if (_user) {
 		user = JSON.parse(_user)
-		console.log("user", user)
+		console.log("firstLogin", user)
 	}
 	if (user) {
 		return {

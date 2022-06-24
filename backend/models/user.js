@@ -14,7 +14,10 @@ const userSchema = mongoose.Schema({
   password:{
     type: String,
     required: true,
-
+  },
+  organization_id: {
+    type: Number,
+    trim: true,
   },
 },{timestamp: true})
 

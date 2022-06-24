@@ -24,7 +24,7 @@ const Sidebar  = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
 	const useAuth = () => {
-		const user = localStorage.getItem("user")
+		const user = localStorage.getItem("firstLogin")
 		if (user) {
 			return true
 		} else {
@@ -36,7 +36,7 @@ const Sidebar  = () => {
 	const navigation = useNavigate()
 
 	const logout = () => {
-		localStorage.removeItem("user")
+		localStorage.removeItem("firstLogin")
 		navigation("/login")
 	}
 
@@ -44,14 +44,14 @@ const Sidebar  = () => {
 	return (
 		<Container isOpen={sidebarOpen} >
 			<Content >
-			 <>
-				<SSidebarButton isOpen={sidebarOpen}  onClick={() => setSidebarOpen((p) => !p)}>
-						<AiOutlineLeft />
-				</SSidebarButton>
-			</>
 	 	<SLinkContainer >
 			{user && (
 			<>
+	
+				<SSidebarButton isOpen={sidebarOpen}  onClick={() => setSidebarOpen((p) => !p)}>
+						<AiOutlineLeft />
+				</SSidebarButton>
+
 			<SDivider />
 				{navigationItems.sidebar.map(({icon,name,to}) => (			
 						<SLink key={name} to={to} style={!sidebarOpen ? { width: `fit-content` } : {}}>

@@ -13,16 +13,16 @@ const userCrtl = {
 
     register: async(req,res) => {
       try {
-        const {name, email, password} = req.body
+        const {name, email, password,organization_id} = req.body
   
         const user = await User.findOne({email})
         if(user){
           return res.status(400).json({
-            msg: "The email already exist"
+            msg: "E-mail já existe"
           })
         }
     
-        if(password.lenth < 6) return res.status(400).json({msg: "Password is at least 6 characters"})
+        if(password.length < 6) return res.status(400).json({msg: "Password is at least 6 characters"})
     
         
         // Password Encrypt
@@ -30,22 +30,23 @@ const userCrtl = {
         const newUser = new User({
           name,
           email,
-          password: passwordHash
+          password: passwordHash,
+          organization_id
         })
     
         await newUser.save()
     
         //Then create jswonwebtoken to authentication 
-        const accesstoken = createAccessToken({id: newUser._id})
-        const refreshtoken = createRefreshToken({id: newUser._id})
+        // const accesstoken = createAccessToken({id: newUser._id})
+        // const refreshtoken = createRefreshToken({id: newUser._id})
     
-        res.cookie('tokenrefresh', refreshtoken, {
-          httpOnly: true,
-          path: '/user/refresh_token',
-          maxAge: 7*24*60*60*1000 // 7d
-        })
+        // res.cookie('tokenrefresh', refreshtoken, {
+        //   httpOnly: true,
+        //   path: '/api/user/refresh_token',
+        //   maxAge: 7*24*60*60*1000 // 7d
+        // })
     
-        return res.json({accesstoken})
+        return res.json({newUser})
     
       } catch (error) {
         return res.status(500).json({msg: "Try again"})
@@ -67,7 +68,7 @@ const userCrtl = {
     
         res.cookie('tokenrefresh', refreshtoken, {
           httpOnly: true,
-          path: '/user/refresh_token',
+          path: '/api/user/refresh_token',
           maxAge: 7*24*60*60*1000 // 7d
         })
   
@@ -75,16 +76,16 @@ const userCrtl = {
     
   
       } catch (error) {
-        return res.status(500).json({msg:err.message})
+        return res.status(500).json({msg:error.message})
       }
     },
     logout: async(req,res) => {
       try {
-        res.clearCookie('tokenrefresh', {path: '/user/refresh_token'})
+        res.clearCookie('tokenrefresh', {path: '/api/user/refresh_token'})
         return res.json({msg:"Logged out"})
         
       } catch (error) {
-        return res.status(500).json({msg:err.message})
+        return res.status(500).json({msg:error.message})
       }
     },
     refreshToken: (req, res) => {

@@ -3,36 +3,41 @@ import { api } from './services/api'
 
 import HostsAPI from './api/hostAPI'
 import TemplateAPI from './api/templateAPI'
+import UserAPI from './api/userAPI'
 export const GlobalState = createContext()
 
 
 
 export const DataProvider = ({children}) => {
-  const [token, setToken] = useState(false)
+  // const firstLogin = JSON.parse(localStorage.getItem('firstLogin'));
+  const [token, setToken] = useState('')
 
 
-//   useEffect(() =>{
-//     const firstLogin = localStorage.getItem('firstLogin')
-//     if(firstLogin){
-//         const refreshToken = async () =>{
-//             const res = await axios.get('/user/refresh_token')
-    
-//             setToken(res.data.accesstoken)
 
-//             setTimeout(() => {
-//                 refreshToken()
-//             }, 10 * 60 * 1000)
+  useEffect(() =>{
+     const firstLogin = JSON.parse(localStorage.getItem('firstLogin'));
+      if(firstLogin){
+          const refreshToken = async () =>{
+              const res = await api.get('/user/refresh_token')
+            
+              setToken(res.data.accesstoken)
+  
+              setTimeout(() => {
+                  refreshToken()
+              }, 10 * 60 * 1000)
+          }
+          refreshToken()
+      }
+  },[])
 
-//         }
-//         refreshToken()
-//     }
-// },[])
 
 
-      
+
 
   const state= {
+    token: [token, setToken],
     hostsAPI:  HostsAPI(),
+    userAPI: UserAPI(token),
     templatesAPI: TemplateAPI()
   }
   return(
