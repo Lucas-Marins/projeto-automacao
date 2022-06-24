@@ -22,7 +22,7 @@ export const Container = styled.div`
    align-items: center;
    justify-content: center;
 
-   .form{
+   .form-login{
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
@@ -30,21 +30,21 @@ export const Container = styled.div`
    }
 `
 
-export const LoginButton = styled.button`
-    width: 120px;
-    height: 45px;
-    margin-top: 100px;
-    margin-left: 80px;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: 500;
-    border-radius: 5px;
+// export const LoginButton = styled.button`
+//     width: 120px;
+//     height: 45px;
+//     margin-top: 100px;
+//     margin-left: 80px;
+//     border: none;
+//     cursor: pointer;
+//     font-size: 20px;
+//     font-weight: 500;
+//     border-radius: 5px;
 
-    transition: filter 0.2s;
+//     transition: filter 0.2s;
 
-    &:hover{
-        filter: brightness(0.9);
-        background-color: RGBA(193,0,0,0.22);
-    }
-`
+//     &:hover{
+//         filter: brightness(0.9);
+//         background-color: RGBA(193,0,0,0.22);
+//     }
+// `

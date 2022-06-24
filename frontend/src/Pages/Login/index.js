@@ -27,7 +27,7 @@ const Login = () => {
 		
 
 		<Container>
-			<Form className="form">
+			<Form className="form-login">
 				<Form.Item name='username' >
                  <Input placeholder="Username" required></Input>
 				</Form.Item>

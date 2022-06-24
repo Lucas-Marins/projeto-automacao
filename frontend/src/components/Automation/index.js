@@ -9,13 +9,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 import 'antd/dist/antd.css'
-import {Card, Col, Row, Divider, Button,List,Input,Pagination,Spin} from 'antd'
-
-
+import {Card, Col, Row, Divider, Button,List,Input,Pagination,Spin,Select} from 'antd'
 
 
 import { GlobalState } from '../../GlobalState';
-
+const { Option } = Select;
 
 
 const  Automation=() =>{
@@ -27,12 +25,27 @@ const  Automation=() =>{
 
   const [searchTerm, setSearchTerm] = useState('')
 
+  const [organization,setOrganization] = useState([])
+  const [organizationid,setOrganizationId] = useState(1)
+  const [organizationtemplate,setOrganizationTemplate] = useState([])
+
     // if(templates.length === 0) return null;
 
     const indexOfLastPost = page * pageSize
     const indexOfFirstPost = indexOfLastPost - pageSize
-    const currentPost = templates.slice(indexOfFirstPost,indexOfLastPost)
+    const currentPost = organizationtemplate.slice(indexOfFirstPost,indexOfLastPost)
 
+    useEffect(() => {
+           api.get(`organization`)
+           .then(res => setOrganization(res.data.results))
+    },[])
+
+    useEffect(() => {
+           api.get(`organization/${organizationid}`)
+          .then(res => setOrganizationTemplate(res.data))
+    },[organizationid])
+
+  console.log(organizationtemplate)
 
     const array = []
     for (let i = 0; i < 1; i++){
@@ -42,6 +55,11 @@ const  Automation=() =>{
     var newArray = array.filter((item) =>
       item.name !== "Dev-DITI-Primeiro-Playbook"
       )
+
+      const handleChange = (value) => {
+        // console.log(`selected ${value}`);
+        setOrganizationId(value)
+      };
   
   return (
       <Container>
@@ -58,6 +76,22 @@ const  Automation=() =>{
         style={{ width: 200}}
         allowClear
         />
+        
+    <Select
+      // defaultValue="lucy"
+      style={{
+        width: 200,
+      }}
+      onChange={handleChange}
+      placeholder="Selecione sua Organização"
+      optionFilterProp="children"
+    >
+        <>
+          {organization.map((org) => (
+            <Option value={org.id}>{org.name}</Option>
+          ))}
+        </>
+    </Select>
 </div>
   <Divider style={{width: '70vw'}}/>
 

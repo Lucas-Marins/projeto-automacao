@@ -122,7 +122,7 @@ const  Dashboard=() =>{
   const count = [
     {
       today: "Today’s Deploy",
-      title: "$53,000",
+      title: "53,000",
       persent: "+30%",
       icon: dollor,
       bnb: "bnb2",
@@ -136,15 +136,15 @@ const  Dashboard=() =>{
     },
     {
       today: "New Clients",
-      title: "+1,200",
+      title: "1,200",
       persent: "-20%",
       icon: heart,
       bnb: "redtext",
     },
     {
       today: "New Orders",
-      title: "$13,200",
-      persent: "10%",
+      title: "13,200",
+      persent: "-10%",
       icon: cart,
       bnb: "bnb2",
     },
