@@ -4,6 +4,7 @@ import { api } from '../services/api';
 
 function UserAPI(token) {
   const [isLogged, setIsLogged] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
   const [userInfo, setUserInfo] = useState('')
 
   useEffect(() =>{
@@ -16,6 +17,7 @@ function UserAPI(token) {
 
                 setIsLogged(true)
                 setUserInfo(res.data)
+                res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false)
 
             } catch (err) {
                 alert(err.response.data.msg)
@@ -24,11 +26,10 @@ function UserAPI(token) {
         getUser()
     }
 },[token])
-
-console.log(userInfo)
   
   return{
     isLogged: [isLogged, setIsLogged],
+    isAdmin: [isAdmin, setIsAdmin],
     userInfo: [userInfo, setUserInfo],
   }
 }

@@ -18,7 +18,11 @@ const DeployPage = () => {
 
     const state = useContext(GlobalState)
     const [templates] = state.templatesAPI.templates
+    const [user] = state.userAPI.userInfo
+    const [token] = state.token
     const [data,setData] = useState([])
+    
+    const {name} = user   
 
     const [lastlogid, setLastLogId] =  useState(null);
 
@@ -61,7 +65,7 @@ const DeployPage = () => {
     },[])
 
     const [fileData, setFileData] = useState([]);
-    const [name, setFileName] = useState("")
+    const [filename, setFileName] = useState("")
     const [uploading, setUploading] = useState(false)
  
     const onSubmitHandler = () => {
@@ -96,8 +100,11 @@ const DeployPage = () => {
          if(params){
              if(data == "job_template" ) {
                 api.post(`job/${params.id}`,{
-                    csv_name: name,
-                    v_fstmp: '/home/usreoc'
+                    csv_name: filename,
+                    v_fstmp: '/home/usreoc',
+                    usuario: name
+                 },{
+                    headers: {Authorization: token}
                  })
 
                 //  setTimeout(() => {
@@ -110,8 +117,11 @@ const DeployPage = () => {
              
                 }else if (data == "workflow_job_template") {
                   api.post(`workflow/${params.id}`,{
-                     csv_name: name,
-                     v_fstmp: '/home/usreoc'
+                     csv_name: filename,
+                     v_fstmp: '/home/usreoc',
+                     usuario: name
+                 },{
+                    headers: {Authorization: token}
                  })
 
                 //  setTimeout(() => {

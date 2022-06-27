@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import {Link, useLocation} from "react-router-dom"
-
+import { Container } from "./style";
 
 import 'antd/dist/antd.css';
 import {
@@ -36,8 +36,6 @@ const NewUser = () => {
 		.then(res => setOrganization(res.data.results))
    },[])
 
-   console.log(organization)
-
 	const Register = async e =>{
 		e.preventDefault()
 		try {
@@ -64,6 +62,11 @@ const NewUser = () => {
       };
 
   return (
+<>
+	<Container
+		
+	>
+
     <Form
     //   labelCol={{
     //     span: 4,
@@ -73,6 +76,7 @@ const NewUser = () => {
     //   }}
       layout="horizontal"
 	  onSubmitCapture={Register}
+	  className="form-user"
     //   onValuesChange={onFormLayoutChange}
     >
 
@@ -102,17 +106,19 @@ const NewUser = () => {
 				</>
 			</Select>
       </Form.Item>
-	  <Form.Item>
-                 <Button block type="primary" htmlType="submit" >Salvar</Button>
-	  </Form.Item>
-	  
-	  {/* <Form.Item label="Admin?">
+	  {/* <Form.Item label="Administrador">
         <Radio.Group>
           <Radio value="apple"> Sim </Radio>
           <Radio value="pear"> Não </Radio>
         </Radio.Group>
       </Form.Item> */}
+	  <Form.Item>
+                 <Button block type="primary" htmlType="submit" >Salvar</Button>
+	  </Form.Item>
     </Form>
+
+	</Container>
+</>
   );
 }
 

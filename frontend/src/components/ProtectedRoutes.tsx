@@ -11,7 +11,7 @@ const useAuth = () => {
 
 	if (_user) {
 		user = JSON.parse(_user)
-		console.log("firstLogin", user)
+		// console.log("firstLogin", user)
 	}
 	if (user) {
 		return {

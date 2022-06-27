@@ -162,7 +162,7 @@ const  Relatorio = () =>{
  return(
   <Container>
   <h1 className='h-template'> Servidores </h1> 
-  <Divider style={{width: '80vw'}}/> 
+  <Divider /> 
 
    <Table
     loading={hosts.length === 0 ? <Spin /> : ''}

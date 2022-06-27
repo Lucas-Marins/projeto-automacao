@@ -13,7 +13,7 @@ const userCrtl = {
 
     register: async(req,res) => {
       try {
-        const {name, email, password,organization_id} = req.body
+        const {name, email, password,organization_id,role} = req.body
   
         const user = await User.findOne({email})
         if(user){
@@ -31,7 +31,8 @@ const userCrtl = {
           name,
           email,
           password: passwordHash,
-          organization_id
+          organization_id,
+          role
         })
     
         await newUser.save()
@@ -116,6 +117,15 @@ const userCrtl = {
         return res.status(500).json({msg:err.message})
       }
     },  
+    getAllUser: async(req,res) => {
+      try {
+        const users = await User.find()
+
+        res.json(users)
+      } catch (error) {
+        return res.status(500).json({msg:error.message})
+      }
+    }
 }
 
 const createAccessToken = (user) => {

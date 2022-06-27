@@ -13,4 +13,7 @@ router.get('/refresh_token', userCrtl.refreshToken)
 
 router.get('/infor', auth, userCrtl.getUser)
 
+
+router.get('/all', userCrtl.getAllUser)
+
 module.exports = router

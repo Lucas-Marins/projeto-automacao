@@ -60,11 +60,13 @@ const hostRouter = require('./routes/hosts')
 const templateRouter = require('./routes/template')
 const userRouter = require('./routes/user')
 const logRouter = require('./routes/log')
+const dashboardRouter = require('./routes/dashboard')
 
 app.use('/api',deployRouter)
 app.use('/api', hostRouter)
 app.use('/api',templateRouter)
 app.use('/api', logRouter)
+app.use('/api', dashboardRouter )
 app.use('/api/user', userRouter)
 
 

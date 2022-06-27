@@ -54,6 +54,20 @@ body{
 
 }
 
+.image-login{
+    background-image: url("./image2.jfif");
+    background-repeat: no-repeat ;
+    background-size: cover;
+    background-position: center center;
+}
+
+.form-login{
+    background: #ecebeb;
+    background: linear-gradient(0deg,#ecebeb 0%, #ffffff 80%);
+    background: -webkit-linear-gradient(0deg,#ecebeb 0%, #ffffff 80%);
+    background: -moz-linear-gradient(0deg,#ecebeb 0%, #ffffff 80%);
+}
+
 
 .app{
     display: flex;

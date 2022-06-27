@@ -15,6 +15,10 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  role:{
+    type: Number,
+    default: 0
+  },
   organization_id: {
     type: Number,
     trim: true,

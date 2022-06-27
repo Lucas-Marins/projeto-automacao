@@ -29,22 +29,3 @@ export const Container = styled.div`
      padding: 3rem;
    }
 `
-
-// export const LoginButton = styled.button`
-//     width: 120px;
-//     height: 45px;
-//     margin-top: 100px;
-//     margin-left: 80px;
-//     border: none;
-//     cursor: pointer;
-//     font-size: 20px;
-//     font-weight: 500;
-//     border-radius: 5px;
-
-//     transition: filter 0.2s;
-
-//     &:hover{
-//         filter: brightness(0.9);
-//         background-color: RGBA(193,0,0,0.22);
-//     }
-// `

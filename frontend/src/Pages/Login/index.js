@@ -5,7 +5,7 @@ import io from 'socket.io-client'
 import { api } from "../../services/api"
 
 import 'antd/dist/antd.css'
-import {Button, Form, Input} from 'antd'
+import {Button, Form, Input,message} from 'antd'
 import { useEffect,useState } from "react"
 
 const Login = () => {
@@ -47,7 +47,8 @@ const Login = () => {
 	
 		  window.location.href ="/dashboard"
 		} catch (err) {
-		  alert(err.response.data.msg)
+		//   alert(err.response.data.msg)
+		  message.error(err.response.data.msg)
 		}
 	  }
 	
@@ -59,7 +60,7 @@ const Login = () => {
 		// 	<LoginButton onClick={login}> Login</LoginButton>
 		
 
-		<Container>
+		<Container className="image-login">
 			<Form className="form-login" onSubmitCapture={loginSubmit}>
 				<Form.Item name='username' >
                  <Input placeholder="Username" value={name} onChange={event => setName(event.target.value)}  required></Input>

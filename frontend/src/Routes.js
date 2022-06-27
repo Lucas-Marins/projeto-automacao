@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import {Routes, Route, Navigate} from "react-router-dom"
 
 
@@ -26,11 +26,17 @@ import Tab3 from "./components/Tab3"
 import ProtectedRoutes from "./components/ProtectedRoutes"
 import PublicRoutes from "./components/PublicRoutes"
 import PermissionDenied from "./components/PermissionDenied"
+import { GlobalState } from "./GlobalState"
 
+import NotFound from "./utils/not_found/NotFound"
 
-const MainRoutes = () => (
+function MainRoutes (){
+	const state = useContext(GlobalState)
+	const [isAdmin] = state.userAPI.isAdmin
+
 	
-	<Routes>
+	return(
+		<Routes>
 		{/** Protected Routes */}
 		{/** Wrap all Route under ProtectedRoutes element */}
 		<Route path="/" element={<ProtectedRoutes />}>
@@ -46,9 +52,11 @@ const MainRoutes = () => (
 				<Route path="logs/workflow/:id" element={<LogWorkflow/>} />
 				<Route path="relatorios/details/:id" element={<DetailsHost/>} />
 				
+				
 				<Route
 					path="users"
-					element={<ListUser extraItem="test extra item from router" />}
+					// element={isAdmin ? <ListUser /> : <NotFound />}
+					element={<ListUser /> }
 				/>
 				<Route path="users/:userId" element={<SingleUser />} />
 				<Route path="users/new" element={<NewUser />} />
@@ -64,7 +72,8 @@ const MainRoutes = () => (
 		{/** Permission denied route */}
 		<Route path="/denied" element={<PermissionDenied />} />
 	</Routes>
-)
+	)
+}
 
 export default MainRoutes
 

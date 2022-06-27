@@ -6,10 +6,11 @@ const Users = require('../models/user')
 
 const deployCrtl = { 
      deployJob: async (req,res) => {
-        //  const user = await Users.findById(req.user.id).select('name')
-        //  if(!user) return res.status(400).json({msg: "User does not exist."})
-    
-        // const {_id, name} = user
+         const user = await Users.findById(req.user.id).select('name')
+         if(!user) return res.status(400).json({msg: "User does not exist."})
+
+
+        const {_id, name} = user
 
          const id = req.params.id
          const {csv_name,v_fstmp } = req.body
@@ -22,8 +23,8 @@ const deployCrtl = {
         const triggerhost = await axios.post(`http://${process.env.IP}/api/v2/job_templates/${id}/launch/`,{
             extra_vars:{
                 csv_Lista: csv_name,
-                v_fstmp: v_fstmp
-                // usuario: name
+                v_fstmp: v_fstmp,
+                usuario: name
             },
         }, config.axiosOptionsPost)
 
@@ -35,13 +36,19 @@ const deployCrtl = {
     },
 
     deployWorkflow: async (req,res) => {
+        const user = await Users.findById(req.user.id).select('name')
+        if(!user) return res.status(400).json({msg: "User does not exist."})
+
+        const {_id, name} = user
+
         const id = req.params.id
         const {csv_name,v_fstmp } = req.body
 
         const triggerhost = await axios.post(`http://${process.env.IP}/api/v2/workflow_job_templates/${id}/launch/`,{
             extra_vars:{
                 csv_Lista: csv_name,
-                v_fstmp: v_fstmp
+                v_fstmp: v_fstmp,
+                usuario: name
             }
         }, config.axiosOptionsPost)
         return res.status(201).json(triggerhost.data)

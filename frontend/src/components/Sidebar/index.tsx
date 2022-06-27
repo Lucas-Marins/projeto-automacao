@@ -35,6 +35,8 @@ const Sidebar  = () => {
 	const location = useLocation()
 	const navigation = useNavigate()
 
+	sessionStorage.clear();
+
 	const logout = () => {
 		localStorage.removeItem("firstLogin")
 		navigation("/login")
