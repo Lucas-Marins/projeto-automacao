@@ -6,11 +6,11 @@ const Users = require('../models/user')
 
 const deployCrtl = { 
      deployJob: async (req,res) => {
-         const user = await Users.findById(req.user.id).select('name')
-         if(!user) return res.status(400).json({msg: "User does not exist."})
+        //  const user = await Users.findById(req.user.id).select('name')
+        //  if(!user) return res.status(400).json({msg: "User does not exist."})
 
 
-        const {_id, name} = user
+        // const {_id, name} = user
 
          const id = req.params.id
          const {csv_name,v_fstmp } = req.body
@@ -24,7 +24,7 @@ const deployCrtl = {
             extra_vars:{
                 csv_Lista: csv_name,
                 v_fstmp: v_fstmp,
-                usuario: name
+                // usuario: name
             },
         }, config.axiosOptionsPost)
 
@@ -36,10 +36,10 @@ const deployCrtl = {
     },
 
     deployWorkflow: async (req,res) => {
-        const user = await Users.findById(req.user.id).select('name')
-        if(!user) return res.status(400).json({msg: "User does not exist."})
+        // const user = await Users.findById(req.user.id).select('name')
+        // if(!user) return res.status(400).json({msg: "User does not exist."})
 
-        const {_id, name} = user
+        // const {_id, name} = user
 
         const id = req.params.id
         const {csv_name,v_fstmp } = req.body
@@ -48,7 +48,7 @@ const deployCrtl = {
             extra_vars:{
                 csv_Lista: csv_name,
                 v_fstmp: v_fstmp,
-                usuario: name
+                // usuario: name
             }
         }, config.axiosOptionsPost)
         return res.status(201).json(triggerhost.data)

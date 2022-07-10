@@ -5,8 +5,8 @@ const auth = require('../middleware/auth')
 
 
 
-router.post('/job/:id',auth, deployCrtl.deployJob)
-router.post('/workflow/:id', auth,deployCrtl.deployWorkflow)
+router.post('/job/:id', deployCrtl.deployJob)
+router.post('/workflow/:id',deployCrtl.deployWorkflow)
 
 
 

@@ -16,4 +16,9 @@ router.get('/infor', auth, userCrtl.getUser)
 
 router.get('/all', userCrtl.getAllUser)
 
+
+router.post('/tower_login',userCrtl.LoginTower)
+
+router.get('/tower_user/:id', userCrtl.GetUserTower)
+
 module.exports = router

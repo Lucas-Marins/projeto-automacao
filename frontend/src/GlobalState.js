@@ -12,31 +12,28 @@ export const DataProvider = ({children}) => {
   // const firstLogin = JSON.parse(localStorage.getItem('firstLogin'));
   const [token, setToken] = useState('')
 
-
-
-  useEffect(() =>{
-     const firstLogin = JSON.parse(localStorage.getItem('firstLogin'));
-      if(firstLogin){
-          const refreshToken = async () =>{
-              const res = await api.get('/user/refresh_token')
+  // useEffect(() =>{
+  //    const firstLogin = JSON.parse(localStorage.getItem('firstLogin'));
+  //     if(firstLogin){
+  //         const refreshToken = async () =>{
+  //             const res = await api.get('/user/refresh_token')
             
-              setToken(res.data.accesstoken)
+  //             setToken(res.data.accesstoken)
   
-              setTimeout(() => {
-                  refreshToken()
-              }, 10 * 60 * 1000)
-          }
-          refreshToken()
-      }
-  },[])
-
-
+  //             setTimeout(() => {
+  //                 refreshToken()
+  //             }, 10 * 60 * 1000)
+  //         }
+  //         refreshToken()
+  //     }
+  // },[])
 
 
 
   const state= {
     token: [token, setToken],
     hostsAPI:  HostsAPI(),
+    // userAPI: UserAPI(token),
     userAPI: UserAPI(token),
     templatesAPI: TemplateAPI()
   }

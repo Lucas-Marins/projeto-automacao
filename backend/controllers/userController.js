@@ -125,6 +125,71 @@ const userCrtl = {
       } catch (error) {
         return res.status(500).json({msg:error.message})
       }
+    },
+    LoginTower: async (req,res) => {
+      try {
+        const {name,password} = req.body
+
+        const response = await axios.get(`http://${name}:${password}@${process.env.IP}/api/v2/tokens/`)
+
+        return res.status(201).json(response.data.results)     
+
+      } catch (error) {
+        return res.status(500).json({msg:error.message})
+      }
+    },
+    GetUserTower: async (req,res) => {
+      try {
+
+        const id = req.params.id
+
+        // const response = await axios.get(`http://${process.env.IP}/api/v2/users/${id}/roles/`)
+
+        async function UrlExist(url) {
+          let apiRes = null;
+          try {
+            apiRes =  await axios.get(url,config.axiosOptionsGet)
+          } catch (err) {
+              apiRes = err.response.status;
+          }finally{
+              return apiRes
+          }
+      }
+
+      async function getPageOfResults(page) {
+          const response =  await axios.get(`http://${process.env.IP}/api/v2/users/${id}/roles/?page=${page}`,config.axiosOptionsGet)
+          return response.data 
+      }
+
+      let jobs = [];
+
+      let TotalSize = null;
+      let page = 1;
+      
+          while (page != TotalSize) {
+              const response =  await UrlExist(`http://${process.env.IP}/api/v2/users/${id}/roles/?page=${page}`)
+
+              if(response.status == 200) {
+                  const newResults = await getPageOfResults(page);
+                  page++;
+                  jobs = jobs.concat(newResults);
+              }else {
+                  break
+              }
+          }
+
+        const jobdata = jobs.map(function(item) {
+            return item.results
+        })
+
+        const flatall = jobdata.flat()
+
+
+        return res.status(201).json(flatall)     
+
+      } catch (error) {
+        return res.status(500).json({msg:error.message})
+      }
     }
 }
 

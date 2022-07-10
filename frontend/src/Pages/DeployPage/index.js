@@ -22,7 +22,11 @@ const DeployPage = () => {
     const [token] = state.token
     const [data,setData] = useState([])
     
-    const {name} = user   
+    const {name} = user  
+
+
+
+
 
     const [lastlogid, setLastLogId] =  useState(null);
 
@@ -58,11 +62,16 @@ const DeployPage = () => {
 
     useEffect(() => {
         if(params){
-            templates.forEach(template =>{
-                if(template.id == params.id) return setData(template.type)
+            user.forEach(template =>{
+                console.log(template)
+                if(template.summary_fields.resource_id == params.id) return setData(template.summary_fields.resource_type)
             })
         }
     },[])
+    console.log(data)
+
+
+
 
     const [fileData, setFileData] = useState([]);
     const [filename, setFileName] = useState("")
@@ -103,9 +112,10 @@ const DeployPage = () => {
                     csv_name: filename,
                     v_fstmp: '/home/usreoc',
                     usuario: name
-                 },{
-                    headers: {Authorization: token}
                  })
+                //  ,{
+                //     headers: {Authorization: token}
+                //  })
 
                 //  setTimeout(() => {
                 //     navigate(`/logs/job/${lastlogid + 1}`)
@@ -120,9 +130,11 @@ const DeployPage = () => {
                      csv_name: filename,
                      v_fstmp: '/home/usreoc',
                      usuario: name
-                 },{
-                    headers: {Authorization: token}
                  })
+                 
+                //  {
+                //     headers: {Authorization: token}
+                //  })
 
                 //  setTimeout(() => {
                 //     navigate(`/logs/workflow/${lastlogid + 1}`)
@@ -133,6 +145,8 @@ const DeployPage = () => {
              }
          }
   }
+
+  if(user.length === 0) return null
 
     return(
     <Container >

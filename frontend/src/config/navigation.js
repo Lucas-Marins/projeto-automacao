@@ -15,18 +15,18 @@ export const navigationItems = {
       icon: < FaRi.RiDashboardFill />
       
     },
-    {
-      name: 'Usuários ',
-      to: '/users', 
-      text:'Usuários',
-      icon: < FaIcons.FaUserFriends />
-    },
-    {
-      name: 'Servidores ',
-      to: '/relatorios', 
-      text:'Relatórios',
-      icon: < FaIcons.FaServer />
-    },
+    // {
+    //   name: 'Usuários ',
+    //   to: '/users', 
+    //   text:'Usuários',
+    //   icon: < FaIcons.FaUserFriends />
+    // },
+    // {
+    //   name: 'Servidores ',
+    //   to: '/relatorios', 
+    //   text:'Relatórios',
+    //   icon: < FaIcons.FaServer />
+    // },
     {
       name: 'Automação ',
       to: '/automation', 
@@ -49,12 +49,12 @@ export const navigationItems = {
       text:'Settings',
       icon: < FaIcons.FaClipboardList />
     },
-    {
-      name: 'Logs ',
-      to: '/logs', 
-      text:'Settings',
-      icon: < FaLo.IoInformationCircleSharp />
-    },
+    // {
+    //   name: 'Logs ',
+    //   to: '/logs', 
+    //   text:'Settings',
+    //   icon: < FaLo.IoInformationCircleSharp />
+    // },
 
   ], 
   footer: [], 

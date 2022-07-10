@@ -21,33 +21,40 @@ const  Automation=() =>{
   const [templates] = state.templatesAPI.templates
   const [user] = state.userAPI.userInfo
 
-  const {organization_id} = user   
 
-
+  // const {organization_id} = user   
+  // console.log(user)
   const [page,setPage] = useState(1)
   const [pageSize, setPageSize] = useState(20)  
 
   const [searchTerm, setSearchTerm] = useState('')
 
-  const [organization,setOrganization] = useState([])
-  const [organizationid,setOrganizationId] = useState(1)
-  const [organizationtemplate,setOrganizationTemplate] = useState([])
+  // const [organization,setOrganization] = useState([])
+  // const [organizationid,setOrganizationId] = useState(1)
+  // const [organizationtemplate,setOrganizationTemplate] = useState([])
 
-    // if(templates.length === 0) return null;
+    if(user.length === 0) return null;
 
+    // var newArray = user.filter((item) =>
+    // item.name !== "Dev-DITI-Primeiro-Playbook"
+    // )
+
+    var newArray = user.filter((item) =>
+       item.summary_fields.resource_type !==  "organization"
+    )
     const indexOfLastPost = page * pageSize
     const indexOfFirstPost = indexOfLastPost - pageSize
-    const currentPost = organizationtemplate.slice(indexOfFirstPost,indexOfLastPost)
+    const currentPost = newArray.slice(indexOfFirstPost,indexOfLastPost)
 
-    useEffect(() => {
-           api.get(`organization`)
-           .then(res => setOrganization(res.data.results))
-    },[])
+    // useEffect(() => {
+    //        api.get(`organization`)
+    //        .then(res => setOrganization(res.data.results))
+    // },[])
 
-    useEffect(() => {
-           api.get(`organization/${organization_id}`)
-          .then(res => setOrganizationTemplate(res.data))
-    },[organization_id])
+    // useEffect(() => {
+    //        api.get(`organization/${organization_id}`)
+    //       .then(res => setOrganizationTemplate(res.data))
+    // },[organization_id])
 
 
     const array = []
@@ -55,14 +62,13 @@ const  Automation=() =>{
         array.push(currentPost)
     }
 
-    var newArray = array.filter((item) =>
-      item.name !== "Dev-DITI-Primeiro-Playbook"
-      )
 
-      const handleChange = (value) => {
-        // console.log(`selected ${value}`);
-        setOrganizationId(value)
-      };
+   
+
+      // const handleChange = (value) => {
+      //   // console.log(`selected ${value}`);
+      //   setOrganizationId(value)
+      // };
   
   return (
       <Container>
@@ -106,15 +112,15 @@ const  Automation=() =>{
       item.filter((val) => {
         if(searchTerm == ""){
           return val
-        } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())){
+        } else if (val.summary_fields.resource_name?.toLowerCase().includes(searchTerm.toLowerCase()) || ''){
           return val
         }
       }).map((val) => {
         return(
           <>
             <List.Item  >
-              <Card className="criclebox " title={val.name} hoverable={false}>
-                <SLink to={'/deploy/' + val.id}>
+              <Card className="criclebox " title={val.summary_fields.resource_name} hoverable={false}>
+                <SLink to={'/deploy/' + val.summary_fields.resource_id}>
                       Selecionar
                 </SLink>
                 </Card>
@@ -123,8 +129,6 @@ const  Automation=() =>{
           </>
         )
       })
-
-      
     )}
     pagination={{
       current:page,

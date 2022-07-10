@@ -36,19 +36,31 @@ const Login = () => {
 	const loginSubmit = async e =>{
 		e.preventDefault()
 		try {
-		 await api.post('/user/login', {
+		//  await api.post('/user/login', {
+		// 	name: name,
+		// 	password: password
+		//  })
+
+		await api.post('/user/tower_login', {
 			name: name,
 			password: password
+		 }).then(function(res){
+			const data = res.data
+			const user = data[Object.keys(data)[0]];
+			
+			localStorage.setItem('firstLogin', user.user)
+			
+			window.location.href ="/dashboard"
 		 })
+
 
 		//  const token = res.data.accesstoken
 		//  localStorage.setItem('firstLogin', JSON.stringify(token))
-		localStorage.setItem('firstLogin', true)
+
 	
-		  window.location.href ="/dashboard"
 		} catch (err) {
 		//   alert(err.response.data.msg)
-		  message.error(err.response.data.msg)
+		  message.error("Usuário ou senha incorreto")
 		}
 	  }
 	
