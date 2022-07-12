@@ -21,16 +21,42 @@ const DeployPage = () => {
     const [user] = state.userAPI.userInfo
     const [token] = state.token
     const [data,setData] = useState([])
-    
-    const {name} = user  
-
-
-
-
-
     const [lastlogid, setLastLogId] =  useState(null);
-
+    const [teams,setTeams] = useState([])
     const [reduce, forceUpdate] = useReducer( x => x + 1 ,0)
+    
+    const {name} = user      
+
+
+    const id = Object.values(user).map(function(item){
+        if(item.summary_fields.resource_type == "team")   return item.summary_fields.resource_id
+      });
+
+      const id_team = id.filter(element => {
+        return element !== undefined;
+      });
+      
+      
+    
+      useEffect(()=> {
+        const firstLogin = JSON.parse(localStorage.getItem('firstLogin'));
+    
+        if(firstLogin && id.length != 0){
+          const getTeams = async () =>{
+            try {
+                const res = await api.get(`/teams/${id_team}`)
+    
+    
+                setTeams(res.data)
+    
+    
+            } catch (err) {
+                alert(err.response.data.msg)
+            }
+         }
+         getTeams()
+         }
+        },[user])
 
 //    const getLastID = useCallback(async () => {
 //        try {
@@ -62,14 +88,14 @@ const DeployPage = () => {
 
     useEffect(() => {
         if(params){
-            user.forEach(template =>{
-                console.log(template)
+            teams.forEach(template =>{
+                // console.log(template)
                 if(template.summary_fields.resource_id == params.id) return setData(template.summary_fields.resource_type)
             })
         }
-    },[])
-    console.log(data)
 
+        forceUpdate()
+    },[teams])
 
 
 

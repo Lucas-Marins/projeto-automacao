@@ -1,6 +1,5 @@
-import { useState,useEffect } from "react";
+import { useState,useEffect, useContext } from "react";
 import { api } from "../services/api";
-
 
 function TemplateAPI(){
     const [templates, setTemplates] =  useState([]);
@@ -16,8 +15,9 @@ function TemplateAPI(){
         getTemplates()
      },[]) 
 
+
      return{
-         templates:[templates, setTemplates]
+         templates:[templates, setTemplates],
      }
      
 }

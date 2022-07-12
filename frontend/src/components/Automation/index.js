@@ -20,27 +20,57 @@ const  Automation=() =>{
   const state = useContext(GlobalState)
   const [templates] = state.templatesAPI.templates
   const [user] = state.userAPI.userInfo
-
-
-  // const {organization_id} = user   
-  // console.log(user)
   const [page,setPage] = useState(1)
   const [pageSize, setPageSize] = useState(20)  
-
   const [searchTerm, setSearchTerm] = useState('')
-
+  const [teams,setTeams] = useState([])
   // const [organization,setOrganization] = useState([])
   // const [organizationid,setOrganizationId] = useState(1)
   // const [organizationtemplate,setOrganizationTemplate] = useState([])
 
+
+  // const {organization_id} = user   
+
+  const id = Object.values(user).map(function(item){
+    if(item.summary_fields.resource_type == "team")   return item.summary_fields.resource_id
+  }); 
+
+  const id_team = id.filter(element => {
+    return element !== undefined;
+  });
+
+  useEffect(()=> {
+    const firstLogin = JSON.parse(localStorage.getItem('firstLogin'));
+
+    if(firstLogin && id.length != 0){
+      const getTeams = async () =>{
+        try {
+            const res = await api.get(`/teams/${id_team}`)
+
+
+            setTeams(res.data)
+
+
+        } catch (err) {
+            alert(err.response.data.msg)
+        }
+     }
+     getTeams()
+     }
+    },[user])
+ 
     if(user.length === 0) return null;
 
     // var newArray = user.filter((item) =>
     // item.name !== "Dev-DITI-Primeiro-Playbook"
     // )
 
-    var newArray = user.filter((item) =>
-       item.summary_fields.resource_type !==  "organization"
+    var newArray = teams.filter((item) =>
+       item.summary_fields.resource_type !==  "organization" &&
+       item.summary_fields.resource_type !==  "team" && 
+       item.summary_fields.resource_type !==  "project" &&
+       item.summary_fields.resource_type !==  "inventory" &&
+       item.summary_fields.resource_type !==  "credential"
     )
     const indexOfLastPost = page * pageSize
     const indexOfFirstPost = indexOfLastPost - pageSize
@@ -69,6 +99,7 @@ const  Automation=() =>{
       //   // console.log(`selected ${value}`);
       //   setOrganizationId(value)
       // };
+
   
   return (
       <Container>
@@ -119,8 +150,9 @@ const  Automation=() =>{
         return(
           <>
             <List.Item  >
-              <Card className="criclebox " title={val.summary_fields.resource_name} hoverable={false}>
-                <SLink to={'/deploy/' + val.summary_fields.resource_id}>
+              
+              <Card className="criclebox " title={val.summary_fields.resource_name} hoverable={false}  >
+                <SLink to={'/deploy/' + val.summary_fields.resource_id} >
                       Selecionar
                 </SLink>
                 </Card>

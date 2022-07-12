@@ -8,6 +8,8 @@ router.get('/list/:id', templateCrtl.getJobListTemplate)
 router.get('/organization/:id',templateCrtl.getOrganizationTemplate)
 router.get('/organization',templateCrtl.getOrganization)
 
+router.get('/teams/:id',templateCrtl.getTeams)
+
 
 
 module.exports = router
