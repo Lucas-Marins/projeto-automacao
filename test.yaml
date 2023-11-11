@@ -2,5 +2,11 @@
 - hosts: all
 
   tasks:
-    - name: Testando
-      shell: "echo hello world"
+  - name: Basic deploy of a service
+    community.general.terraform:
+      project_path: '{{ project_dir }}'
+      state: present
+      force_init: true
+
+  - name: Testando
+    shell: "echo hello world"
