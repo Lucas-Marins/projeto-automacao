@@ -22,7 +22,7 @@ const deployCrtl = {
 
         const triggerhost = await axios.post(`http://${process.env.IP}/api/v2/job_templates/${id}/launch/`,{
             extra_vars:{
-                csv_Lista: csv_name,
+                v_csvListaDeploy: csv_name,
                 v_fstmp: v_fstmp,
                 // usuario: name
             },
@@ -46,7 +46,7 @@ const deployCrtl = {
 
         const triggerhost = await axios.post(`http://${process.env.IP}/api/v2/workflow_job_templates/${id}/launch/`,{
             extra_vars:{
-                csv_Lista: csv_name,
+                v_csvListaDeploy: csv_name,
                 v_fstmp: v_fstmp,
                 // usuario: name
             }

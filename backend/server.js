@@ -105,15 +105,15 @@ app.post('/api/create', (req, res) => {
 
 
 
-const URI = process.env.MONGODB_URL 
-mongoose.connect(URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}, err => {
+// const URI = process.env.MONGODB_URL 
+// mongoose.connect(URI, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// }, err => {
 
-    if(err) throw err;
-    console.log("Connected to MongoDB")
-})
+//     if(err) throw err;
+//     console.log("Connected to MongoDB")
+// })
 
 
 // server.listen(3333, ()=> {

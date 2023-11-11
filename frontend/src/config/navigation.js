@@ -21,12 +21,12 @@ export const navigationItems = {
     //   text:'Usuários',
     //   icon: < FaIcons.FaUserFriends />
     // },
-    {
-      name: 'Servidores ',
-      to: '/relatorios', 
-      text:'Relatórios',
-      icon: < FaIcons.FaServer />
-    },
+    // {
+    //   name: 'Servidores ',
+    //   to: '/relatorios', 
+    //   text:'Relatórios',
+    //   icon: < FaIcons.FaServer />
+    // },
     {
       name: 'Automação ',
       to: '/automation', 
@@ -43,18 +43,18 @@ export const navigationItems = {
     //   to: '/dynamic-form', 
     //   text:'dynamicform'
     // },
-    {
-      name: 'Formulário ',
-      to: '/generator', 
-      text:'Settings',
-      icon: < FaIcons.FaClipboardList />
-    },
-    {
-      name: 'Logs ',
-      to: '/logs', 
-      text:'Settings',
-      icon: < FaLo.IoInformationCircleSharp />
-    },
+    // {
+    //   name: 'Formulário ',
+    //   to: '/generator', 
+    //   text:'Settings',
+    //   icon: < FaIcons.FaClipboardList />
+    // },
+    // {
+    //   name: 'Logs ',
+    //   to: '/logs', 
+    //   text:'Settings',
+    //   icon: < FaLo.IoInformationCircleSharp />
+    // },
 
   ], 
   footer: [], 
