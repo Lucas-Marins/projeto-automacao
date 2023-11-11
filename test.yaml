@@ -4,7 +4,7 @@
   tasks:
   - name: Basic deploy of a service
     community.general.terraform:
-      project_path: '{{ project_dir }}'
+      project_path: /tmp/azure
       state: present
       force_init: true
 
