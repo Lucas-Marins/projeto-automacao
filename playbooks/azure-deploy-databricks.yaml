@@ -6,8 +6,6 @@
     ansible.builtin.git:
       repo: https://github.com/Lucas-Marins/projeto-automacao.git
       dest: /tmp/
-      single_branch: yes
-      version: master
 
   # - name: Deploy maquina virtual
   #   community.general.terraform:
