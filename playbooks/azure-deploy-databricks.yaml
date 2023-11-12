@@ -5,7 +5,7 @@
   - name: Example clone of a single branch
     ansible.builtin.git:
       repo: https://github.com/Lucas-Marins/projeto-automacao.git
-      dest: /tmp/
+      dest: /tmp/automation
 
   # - name: Deploy maquina virtual
   #   community.general.terraform:
