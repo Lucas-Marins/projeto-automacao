@@ -7,8 +7,8 @@
       repo: https://github.com/Lucas-Marins/projeto-automacao.git
       dest: /tmp/automation
 
-  # - name: Deploy maquina virtual
-  #   community.general.terraform:
-  #     project_path: /tmp/azure
-  #     state: present
-  #     force_init: true
+  - name: Deploy maquina virtual
+    community.general.terraform:
+      project_path: /tmp/automation/terraform/azure/virtual-machines/basic-password
+      state: present
+      force_init: true
