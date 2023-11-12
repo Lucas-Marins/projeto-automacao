@@ -2,11 +2,8 @@
 - hosts: all
 
   tasks:
-  - name: Basic deploy of a service
+  - name: Deploy maquina virtual
     community.general.terraform:
       project_path: /tmp/azure
       state: present
       force_init: true
-
-  - name: Testando
-    shell: "echo hello world"

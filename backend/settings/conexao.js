@@ -2,7 +2,7 @@ const axiosOptionsGet = {
     headers: {
         'Content-Type' : 'application/json',
         'Access-Control-Allow-Origin': '*',
-        'Authorization': `Bearer zibaJhNDokFNyh4GkzC2DCd6ysijFL`,
+        'Authorization': `Bearer M7VywOAsyX1qlo9nXPjEkqGEQUCj95`,
         "Access-Control-Allow-Credentials" : true ,
       }
 }
@@ -12,7 +12,7 @@ const axiosOptionsPost = {
     headers: {
         'Content-Type' : 'application/json',
         'Access-Control-Allow-Origin': '*',
-        'Authorization': `Bearer 8OsS4AFy1e67PAlaO2dUBcrn4cYDVp`,
+        'Authorization': `Bearer fwKvNT7tMpJ09PLiXrG4YE6JRQPlD7`,
         "Access-Control-Allow-Credentials" : true  
       }
 }

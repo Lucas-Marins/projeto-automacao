@@ -1,0 +1,16 @@
+---
+- hosts: all
+
+  tasks:
+  - name: Example clone of a single branch
+    ansible.builtin.git:
+      repo: https://github.com/Lucas-Marins/projeto-automacao.git
+      dest: /tmp/
+      single_branch: yes
+      version: master
+
+  # - name: Deploy maquina virtual
+  #   community.general.terraform:
+  #     project_path: /tmp/azure
+  #     state: present
+  #     force_init: true
