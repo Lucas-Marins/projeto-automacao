@@ -16,7 +16,7 @@
         - djangorestframework
 
   - name: Iniciando o projeto
-    shell: '. /home/x1000/tcc/venv/bin/activate; django-admin startproject setup /home/ubuntu/tcc'
+    shell: '. /home/x1000/tcc/venv/bin/activate; django-admin startproject setup /home/x1000/tcc'
 
   - name: Alterando o hosts do settings
     lineinfile:
