@@ -9,6 +9,6 @@
 
   - name: Deploy maquina virtual
     community.general.terraform:
-      project_path: /tmp/automation/terraform/azure/kubernetes/basic-clsuter
+      project_path: /tmp/automation/terraform/azure/managed-disks
       state: present
       force_init: true
