@@ -1,14 +1,25 @@
 ---
 - hosts: all
+  become: true
+  become_user: root
 
   tasks:
-  - name: Example clone of a single branch
-    ansible.builtin.git:
-      repo: https://github.com/Lucas-Marins/projeto-automacao.git
-      dest: /tmp/automation
+    - name: Fazer update apt repo and cache o
+      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
 
-  - name: Deploy maquina virtual
-    community.general.terraform:
-      project_path: /tmp/automation/terraform/azure/cosmos-db/basic/
-      state: present
-      force_init: true
+    - name: Fazendo upgrade de packages nos  servidores
+      apt: upgrade=dist force_apt_get=yes
+
+    - name: Checando se reboot é necessário 
+      register: reboot_required_file
+      stat: path=/var/run/reboot-required get_md5=no
+
+    - name: Reboot the box if kernel updated
+      reboot:
+        msg: "Reboot initiated by Ansible for kernel updates"
+        connect_timeout: 5
+        reboot_timeout: 300
+        pre_reboot_delay: 0
+        post_reboot_delay: 30
+        test_command: uptime
+      when: reboot_required_file.stat.exists

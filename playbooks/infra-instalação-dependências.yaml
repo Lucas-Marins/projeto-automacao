@@ -2,13 +2,27 @@
 - hosts: all
 
   tasks:
-  - name: Example clone of a single branch
-    ansible.builtin.git:
-      repo: https://github.com/Lucas-Marins/projeto-automacao.git
-      dest: /tmp/automation
+  - name: Instalando o pyhon3, virtualenv
+    apt:
+      pkg:
+      - python3
+      - virutalenv
+      update_chace: yes
 
-  - name: Deploy maquina virtual
-    community.general.terraform:
-      project_path: /tmp/automation/terraform/azure/cosmos-db/basic/
-      state: present
-      force_init: true
+  - name: Instalando dependencias com pip
+    pip:
+      virtualenv: /home/ubuntu/tcc/venv
+      name:
+        - django
+        - djangorestframework
+
+  - name: Iniciando o projeto
+    shell: '. /home/ubuntu/tcc/venv/bin/activate; django-admin startproject setup /home/ubuntu/tcc'
+
+  - name: Alterando o hosts do settings
+    lineinfile:
+      path: /home/ubuntu/tcc/setup/settings.py
+      regexp: 'ALLOWED_HOSTS'
+      line: 'ALLOWED_HOSTS = ["*"]'
+      backrefs: yes
+ 

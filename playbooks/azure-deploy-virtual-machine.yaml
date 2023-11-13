@@ -2,7 +2,7 @@
 - hosts: all
 
   tasks:
-  - name: Example clone of a single branch
+  - name: Clone repositório
     ansible.builtin.git:
       repo: https://github.com/Lucas-Marins/projeto-automacao.git
       dest: /tmp/automation
