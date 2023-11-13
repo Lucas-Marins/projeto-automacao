@@ -7,7 +7,6 @@
       pkg:
       - python3
       - virutalenv
-      update_chace: yes
 
   - name: Instalando dependencias com pip
     pip:
