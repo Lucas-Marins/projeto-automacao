@@ -1,0 +1,14 @@
+---
+- hosts: all
+
+  tasks:
+  - name: Example clone of a single branch
+    ansible.builtin.git:
+      repo: https://github.com/Lucas-Marins/projeto-automacao.git
+      dest: /tmp/automation
+
+  - name: Deploy DataBricks
+    community.general.terraform:
+      project_path: /tmp/automation/terraform/azure/sql-azure/database
+      state: present
+      force_init: true

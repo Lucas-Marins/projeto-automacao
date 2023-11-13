@@ -9,6 +9,6 @@
 
   - name: Deploy maquina virtual
     community.general.terraform:
-      project_path: /tmp/automation/terraform/azure/virtual-machines/linux/basic-password/
+      project_path: /tmp/automation/terraform/aws/elb/
       state: present
       force_init: true
